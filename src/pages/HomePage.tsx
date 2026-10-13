@@ -1,8 +1,43 @@
+import { ArrowRight } from 'lucide-react'
+import { useState } from 'react'
+import { CategoryFilter, ProjectGrid, filterProjects } from '@/components/site/ProjectFilter'
 import { ScrollSignature } from '@/components/site/ScrollSignature'
 import { SectionHeading, Shell } from '@/components/site/Shell'
 import { WebsiteTile } from '@/components/site/WebsiteTile'
-import { websites } from '@/data'
+import { websites, type Category } from '@/data'
 import { useLang } from '@/i18n'
+
+// How many project cards the home page shows before "View all".
+const HOME_PROJECT_LIMIT = 4
+
+function ProjectsSection() {
+  const { t } = useLang()
+  // Kept in local state so filtering on Home does not change the URL or scroll.
+  const [category, setCategory] = useState<Category | null>(null)
+  const items = filterProjects(category).slice(0, HOME_PROJECT_LIMIT)
+  const viewAllHref = category ? `#/projects?category=${category}` : '#/projects'
+
+  return (
+    <section className="mt-28">
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading label={t('caseStudies')} title={t('projects')} />
+        <CategoryFilter value={category} onChange={setCategory} />
+      </div>
+      <div className="mt-10">
+        <ProjectGrid items={items} />
+      </div>
+      <div className="mt-10 flex justify-center">
+        <a
+          href={viewAllHref}
+          className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-brand-soft"
+        >
+          {t('viewAllProjects')}
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
+        </a>
+      </div>
+    </section>
+  )
+}
 
 export function HomePage() {
   const { t } = useLang()
@@ -32,6 +67,8 @@ export function HomePage() {
           ))}
         </div>
       </section>
+
+      <ProjectsSection />
     </Shell>
   )
 }

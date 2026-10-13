@@ -46,6 +46,7 @@ const en = {
   solution: 'Solution',
   gallery: 'Gallery',
   nextProject: 'Next project',
+  viewAllProjects: 'View all projects',
   challengeCopy:
     'Placeholder copy. What was broken or missing, who it hurt, and what constraints shaped the work: timeline, budget, tech, or brand rules.',
   processCopy:
@@ -98,6 +99,7 @@ const fa: Record<Key, string> = {
   solution: 'راه‌حل',
   gallery: 'گالری',
   nextProject: 'پروژه‌ی بعدی',
+  viewAllProjects: 'مشاهده‌ی همه‌ی پروژه‌ها',
   challengeCopy:
     'متن نمونه. چه چیزی خراب بود یا کم بود، به چه کسی آسیب می‌زد و چه محدودیت‌هایی کار را شکل داد: زمان، بودجه، فناوری یا قواعد برند.',
   processCopy:
