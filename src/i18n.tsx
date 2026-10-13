@@ -53,6 +53,7 @@ const en = {
   basedIn: 'Based in',
   city: 'Tabriz, Iran',
   backToTop: 'Back to top',
+  loading: 'Loading',
   darkMode: 'Switch to dark mode',
   lightMode: 'Switch to light mode',
   challengeCopy:
@@ -114,6 +115,7 @@ const fa: Record<Key, string> = {
   basedIn: 'ساکن',
   city: 'تبریز، ایران',
   backToTop: 'بازگشت به بالا',
+  loading: 'در حال بارگذاری',
   darkMode: 'تغییر به حالت تیره',
   lightMode: 'تغییر به حالت روشن',
   challengeCopy:

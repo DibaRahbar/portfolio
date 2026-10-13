@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState, type ReactNode } from 'react'
 import DotGrid from '@/components/DotGrid'
+import { Preloader } from '@/components/site/Preloader'
 import { SiteDock, type Section } from '@/components/site/SiteDock'
 import { StickerTrail } from '@/components/site/StickerTrail'
 import { LangProvider } from '@/i18n'
@@ -106,6 +107,7 @@ export default function App() {
         </PageTransition>
         <SiteDock active={sectionFor(route.path)} />
         <StickerTrail />
+        <Preloader />
       </LangProvider>
     </ThemeProvider>
   )
