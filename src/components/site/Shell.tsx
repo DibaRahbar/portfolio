@@ -1,6 +1,9 @@
+import { Moon, Sun } from 'lucide-react'
 import type { ReactNode } from 'react'
-import { SiteDock, type Section } from '@/components/site/SiteDock'
+import { Footer } from '@/components/site/Footer'
 import { useLang, type Lang } from '@/i18n'
+import { burst } from '@/lib/burst'
+import { useThemeMode } from '@/theme-mode'
 
 export function SectionHeading({ label, title }: { label: string; title: string }) {
   return (
@@ -35,20 +38,43 @@ function LanguageSwitch() {
   )
 }
 
-export function Shell({ active, children }: { active: Section; children: ReactNode }) {
+function ThemeToggle() {
+  const { t } = useLang()
+  const { isDark, toggle } = useThemeMode()
+  return (
+    <button
+      type="button"
+      onClick={event => {
+        const rect = event.currentTarget.getBoundingClientRect()
+        const origin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) burst(origin.x, origin.y)
+        toggle(origin)
+      }}
+      aria-label={isDark ? t('lightMode') : t('darkMode')}
+      className="grid size-10 place-items-center rounded-full border bg-background text-muted-foreground transition-colors hover:text-brand"
+    >
+      {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+    </button>
+  )
+}
+
+export function Shell({ children }: { children: ReactNode }) {
   const { t } = useLang()
   return (
     <>
-      <main className="mx-auto max-w-[1264px] px-4 pt-10 pb-44 sm:px-8 xl:px-0">
+      <main className="mx-auto max-w-[1264px] px-4 pt-6 sm:px-8 sm:pt-10 xl:px-0">
         <header className="flex items-center justify-between gap-4">
           <a href="#/" className="text-xl font-semibold tracking-tight">
             {t('name')}
           </a>
-          <LanguageSwitch />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSwitch />
+          </div>
         </header>
         {children}
       </main>
-      <SiteDock active={active} />
+      <Footer />
     </>
   )
 }

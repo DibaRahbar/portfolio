@@ -4,10 +4,12 @@ import type { Project } from '@/data'
 import { useLang } from '@/i18n'
 import { categoryLabel } from '@/lib/category'
 import { placeholderImage } from '@/lib/placeholder'
-import { colors } from '@/theme'
+import { colors, darkColors } from '@/theme'
+import { useThemeMode } from '@/theme-mode'
 
 export function ProjectCard({ project }: { project: Project }) {
   const { t, l, n } = useLang()
+  const { isDark } = useThemeMode()
   const title = l(project.title)
   const meta = [
     [t('deliverables'), l(project.deliverables)],
@@ -21,8 +23,8 @@ export function ProjectCard({ project }: { project: Project }) {
       className="group block h-full rounded-3xl outline-none focus-visible:ring-2 focus-visible:ring-brand"
     >
       <SpotlightCard
-        theme="light"
-        spotlightColor={colors.tertiary}
+        theme={isDark ? 'dark' : 'light'}
+        spotlightColor={isDark ? darkColors.spotlight : colors.tertiary}
         intensity={0.45}
         borderGlow={1}
         spotlightSize={340}
@@ -30,7 +32,7 @@ export function ProjectCard({ project }: { project: Project }) {
       >
         <div className="relative overflow-hidden rounded-2xl">
           <img
-            src={placeholderImage(`${title} ${t('cover')}`)}
+            src={placeholderImage(`${title} ${t('cover')}`, undefined, undefined, isDark)}
             alt={`${title} ${t('cover')}`}
             className="aspect-[620/380] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />

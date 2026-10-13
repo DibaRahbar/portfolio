@@ -10,7 +10,8 @@ import { projects, type Project } from '@/data'
 import { useLang, type MessageKey } from '@/i18n'
 import { categoryLabel } from '@/lib/category'
 import { placeholderImage } from '@/lib/placeholder'
-import { colors } from '@/theme'
+import { colors, darkColors } from '@/theme'
+import { useThemeMode } from '@/theme-mode'
 import { ProjectsPage } from '@/pages/ProjectsPage'
 
 const mono = 'font-mono text-[11px] tracking-[0.06em] uppercase'
@@ -55,8 +56,8 @@ function Results({ project }: { project: Project }) {
     <section className="mt-16">
       <h2 className={`${mono} text-brand-soft`}>{t('results')}</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
-        {project.results.map((result, i) => (
-          <Reveal key={result.label.en} delay={i * 0.08} className="rounded-3xl border border-brand-soft/20 bg-secondary p-8">
+        {project.results.map(result => (
+          <Reveal key={result.label.en} className="rounded-3xl border border-brand-soft/20 bg-secondary p-6 sm:p-8">
             <p className="text-5xl font-bold tracking-tight text-brand sm:text-6xl">
               {/* Keyed by language so the count replays with the right digits after switching */}
               <CountUp key={lang} to={result.value} duration={1.6} locale={locale} />
@@ -79,7 +80,7 @@ function Story({ project }: { project: Project }) {
     { key: 'solution', body: t('solutionCopy') },
   ]
   return (
-    <section className="mt-24 space-y-16">
+    <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">
       {sections.map((section, i) => (
         <Reveal key={section.key} className="grid gap-4 border-t pt-10 lg:grid-cols-[300px_1fr] lg:gap-16">
           <div>
@@ -116,17 +117,18 @@ const galleries: Record<Project['category'], Shot[]> = {
 
 function Gallery({ project }: { project: Project }) {
   const { t, l, n } = useLang()
+  const { isDark } = useThemeMode()
   const title = l(project.title)
   return (
-    <section className="mt-24">
+    <section className="mt-16 sm:mt-24">
       <h2 className={`${mono} text-brand-soft`}>{t('gallery')}</h2>
       <div className="mt-4 grid grid-cols-6 gap-4">
         {galleries[project.category].map((shot, i) => {
           const label = `${t('image')} ${n(i + 1)}`
           return (
-            <Reveal key={i} delay={(i % 3) * 0.06} className={shot.span}>
+            <Reveal key={i} className={shot.span}>
               <img
-                src={placeholderImage(label, shot.w, shot.h)}
+                src={placeholderImage(label, shot.w, shot.h, isDark)}
                 alt={`${title} — ${label}`}
                 style={{ aspectRatio: `${shot.w} / ${shot.h}` }}
                 className="w-full rounded-2xl object-cover"
@@ -141,21 +143,29 @@ function Gallery({ project }: { project: Project }) {
 
 function NextProject({ project }: { project: Project }) {
   const { t, l } = useLang()
+  const { isDark } = useThemeMode()
   const next = projects[(projects.indexOf(project) + 1) % projects.length]
   return (
-    <Reveal className="mt-28">
+    <Reveal className="mt-20 sm:mt-28">
       <a href={`#/projects/${next.slug}`} className="group block rounded-3xl outline-none focus-visible:ring-2 focus-visible:ring-brand">
-        <SpotlightCard theme="light" spotlightColor={colors.tertiary} intensity={0.45} borderGlow={1} spotlightSize={420} className="p-8! sm:p-12!">
-          <div className="flex items-center justify-between gap-8">
+        <SpotlightCard
+          theme={isDark ? 'dark' : 'light'}
+          spotlightColor={isDark ? darkColors.spotlight : colors.tertiary}
+          intensity={0.45}
+          borderGlow={1}
+          spotlightSize={420}
+          className="p-6! sm:p-12!"
+        >
+          <div className="flex items-center justify-between gap-4 sm:gap-8">
             <div>
               <p className={`${mono} text-brand-soft`}>
                 {t('nextProject')} · {t(categoryLabel[next.category])}
               </p>
-              <h2 className="mt-3 text-4xl font-bold tracking-tight transition-colors group-hover:text-brand sm:text-6xl">
+              <h2 className="mt-3 text-3xl font-bold tracking-tight transition-colors group-hover:text-brand sm:text-6xl">
                 {l(next.title)}
               </h2>
             </div>
-            <span className="grid size-16 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full sm:size-16 bg-primary text-primary-foreground transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
               <ArrowRight className="size-6 rtl:-scale-x-100" />
             </span>
           </div>
@@ -167,12 +177,13 @@ function NextProject({ project }: { project: Project }) {
 
 export function ProjectDetailPage({ slug }: { slug: string }) {
   const { t, l, n } = useLang()
+  const { isDark } = useThemeMode()
   const project = projects.find(p => p.slug === slug)
   if (!project) return <ProjectsPage category={null} />
   const title = l(project.title)
 
   return (
-    <Shell active="projects">
+    <Shell>
       <a
         href="#/projects"
         className="mt-10 inline-flex items-center gap-2 rounded-full border bg-background px-5 py-2.5 text-[13px] font-medium transition-colors hover:border-brand hover:text-brand"
@@ -180,13 +191,13 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
         <ArrowLeft className="size-4 rtl:-scale-x-100" /> {t('backToProjects')}
       </a>
 
-      <Reveal className="mt-10 grid gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
+      <Reveal className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
         <div>
           <p className={`${mono} text-brand-soft`}>
             {t(categoryLabel[project.category])} · {n(project.year)} — {l(project.place)}
           </p>
-          <h1 className="mt-4 text-5xl leading-[1.05] font-bold tracking-[-0.03em] sm:text-7xl rtl:leading-[1.25]">{title}</h1>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">{l(project.description)}</p>
+          <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-[-0.03em] sm:text-7xl sm:leading-[1.05] rtl:leading-[1.3]">{title}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">{l(project.description)}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {project.tags.map(tag => (
               <Badge key={tag.en} variant="secondary" className="h-7 px-3 text-[13px]">
@@ -198,7 +209,7 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
         <MetaCard project={project} />
       </Reveal>
 
-      <HeroImage src={placeholderImage(`${title} ${t('hero')}`, 1264, 600)} alt={`${title} ${t('hero')}`} />
+      <HeroImage src={placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)} alt={`${title} ${t('hero')}`} />
       <Results project={project} />
       <Story project={project} />
       <Gallery project={project} />

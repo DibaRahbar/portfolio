@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ProjectCard } from '@/components/site/ProjectCard'
+import { Reveal } from '@/components/site/Reveal'
 import { categories, projects, type Category, type Project } from '@/data'
 import { useLang } from '@/i18n'
 import { categoryLabel } from '@/lib/category'
@@ -21,7 +22,7 @@ export function CategoryFilter({
     <div
       role="group"
       aria-label={t('filterProjects')}
-      className="inline-flex flex-wrap gap-1 rounded-full border bg-background/80 p-1 backdrop-blur"
+      className="inline-flex max-w-full gap-1 overflow-x-auto rounded-full border bg-background/80 p-1 backdrop-blur [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {tabs.map(c => {
         const active = c === value
@@ -31,7 +32,7 @@ export function CategoryFilter({
             type="button"
             aria-pressed={active}
             onClick={() => onChange(c)}
-            className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            className={`relative shrink-0 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               active ? 'text-primary-foreground' : 'text-muted-foreground hover:text-brand'
             }`}
           >
@@ -68,7 +69,10 @@ export function ProjectGrid({ items }: { items: Project[] }) {
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <ProjectCard project={project} />
+            {/* Inner wrapper so the scroll scrub and the filter layout animation use separate transforms */}
+            <Reveal className="h-full">
+              <ProjectCard project={project} />
+            </Reveal>
           </motion.div>
         ))}
       </AnimatePresence>

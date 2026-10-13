@@ -1,17 +1,22 @@
-import { motion, useReducedMotion } from 'motion/react'
-import type { ReactNode } from 'react'
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
+import { useRef, type ReactNode } from 'react'
 
-/** Fades and lifts its content in the first time it scrolls into view. */
-export function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+/**
+ * Scroll-scrubbed entrance: the content rises, scales up, and fades in as its top
+ * travels from the bottom of the viewport to 80% height, and reverses on the way back up.
+ * A light spring smooths out wheel and trackpad jitter.
+ */
+export function Reveal({ children, className }: { children: ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 100%', 'start 80%'] })
+  const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 40, mass: 0.4 })
+  const opacity = useTransform(progress, [0, 1], [0, 1])
+  const y = useTransform(progress, [0, 1], [56, 0])
+  const scale = useTransform(progress, [0, 1], [0.96, 1])
+
   return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <motion.div ref={ref} className={className} style={reduce ? undefined : { opacity, y, scale }}>
       {children}
     </motion.div>
   )

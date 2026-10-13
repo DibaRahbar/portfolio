@@ -16,7 +16,7 @@ export function ProjectsPage({ category }: { category: Category | null }) {
   }
 
   return (
-    <Shell active="projects">
+    <Shell>
       <section className="mt-14">
         <SectionHeading label={t('caseStudies')} title={t('projects')} />
         <div className="mt-8">

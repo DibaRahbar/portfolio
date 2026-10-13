@@ -1,7 +1,8 @@
 import { BriefcaseBusiness, House, MessageCircle } from 'lucide-react'
 import Dock from '@/components/Dock'
 import { useLang } from '@/i18n'
-import { colors } from '@/theme'
+import { colors, darkColors } from '@/theme'
+import { useThemeMode } from '@/theme-mode'
 
 export type Section = 'home' | 'projects' | 'contact'
 
@@ -11,6 +12,7 @@ const go = (hash: string) => () => {
 
 export function SiteDock({ active }: { active: Section }) {
   const { t } = useLang()
+  const { isDark } = useThemeMode()
   const items = [
     { icon: <House className="size-5" />, label: t('home'), onClick: go('#/'), active: active === 'home' },
     { icon: <BriefcaseBusiness className="size-5" />, label: t('projects'), onClick: go('#/projects'), active: active === 'projects' },
@@ -22,14 +24,14 @@ export function SiteDock({ active }: { active: Section }) {
     <div dir="ltr" className="pointer-events-none fixed inset-x-0 bottom-0 z-50 h-40">
       <Dock
         items={items}
-        theme="light"
+        theme={isDark ? 'dark' : 'light'}
         position="bottom"
         baseItemSize={52}
         magnification={72}
         tiles
         showLabels
         showIndicators
-        accentColor={colors.primary}
+        accentColor={isDark ? darkColors.dotActive : colors.primary}
         className="pointer-events-auto"
       />
     </div>
