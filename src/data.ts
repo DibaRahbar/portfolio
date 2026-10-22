@@ -187,7 +187,7 @@ const allProjects: Project[] = [
   {
     slug: 'academic-hu',
     category: 'uiux',
-    title: { en: 'Academic Hu Portfolio – Website & App', fa: 'پورتفولیوی Academic Hu – وب‌سایت و اپلیکیشن' },
+    title: { en: 'Academic Hu Portfolio', fa: 'پورتفولیوی Academic Hu' },
     client: { en: 'Academic Hu', fa: 'Academic Hu' },
     description: {
       en: 'Website and app design for the Academic Hu portfolio.',
