@@ -48,6 +48,15 @@ export function NumberedSection({
 }
 
 export function StoryText({ children }: { children: ReactNode }) {
+  if (typeof children === 'string' && children.includes('\n\n')) {
+    return (
+      <div className="max-w-2xl space-y-4">
+        {children.split('\n\n').map((para, i) => (
+          <p key={i} className="text-lg leading-8 text-muted-foreground">{para}</p>
+        ))}
+      </div>
+    )
+  }
   return <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{children}</p>
 }
 

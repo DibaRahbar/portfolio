@@ -73,11 +73,12 @@ function Results({ project }: { project: Project }) {
 
 function Story({ project }: { project: Project }) {
   const { t, l } = useLang()
+  const cp = project.uiuxCopy
   const sections: { key: MessageKey; body: string }[] = [
-    { key: 'overview', body: `${l(project.description)} ${t('caseStudyCopy')}` },
-    { key: 'challenge', body: t('challengeCopy') },
-    { key: 'process', body: t('processCopy') },
-    { key: 'solution', body: t('solutionCopy') },
+    { key: 'overview', body: cp?.overview ? l(cp.overview) : `${l(project.description)} ${t('caseStudyCopy')}` },
+    { key: 'challenge', body: cp?.challenge ? l(cp.challenge) : t('challengeCopy') },
+    { key: 'process', body: cp?.process ? l(cp.process) : t('processCopy') },
+    { key: 'solution', body: cp?.solution ? l(cp.solution) : t('solutionCopy') },
   ]
   return (
     <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">

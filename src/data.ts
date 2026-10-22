@@ -32,6 +32,14 @@ export type BrandIdentity = {
   stickers?: number
 }
 
+/** Per-project copy for UI/UX case study sections. When present, overrides the generic placeholder text. */
+export type UiuxCopy = {
+  overview?: Localized
+  challenge?: Localized
+  process?: Localized
+  solution?: Localized
+}
+
 /** Per-project copy for brand case study sections. When present, overrides the generic placeholder text. */
 export type BrandCopy = {
   intro?: Localized
@@ -61,6 +69,8 @@ export type Project = {
   identity?: BrandIdentity
   /** Brand projects: real case-study copy. When present, replaces generic placeholders. */
   copy?: BrandCopy
+  /** UI/UX projects: real case-study copy. When present, replaces generic placeholders. */
+  uiuxCopy?: UiuxCopy
   /**
    * Result gallery layout. 'mixed11': 3 wide + 8 regular. 'v5h4': 5 vertical + 4 horizontal.
    * 'horizontal11': 11 horizontal. Brand projects without one use a default mix.
@@ -91,6 +101,10 @@ const tag = {
   ads: { en: 'Ads', fa: 'تبلیغات' },
   website: { en: 'Website', fa: 'وب‌سایت' },
   app: { en: 'App', fa: 'اپلیکیشن' },
+  platform: { en: 'Platform', fa: 'پلتفرم' },
+  virtual: { en: 'Virtual', fa: 'مجازی' },
+  dashboard: { en: 'Dashboard', fa: 'داشبورد' },
+  art: { en: 'Art & Culture', fa: 'هنر و فرهنگ' },
 }
 
 const plain = (s: string): Localized => ({ en: s, fa: s })
@@ -313,15 +327,44 @@ const allProjects: Project[] = [
     },
   },
   {
+    slug: 'tabriz-art-gallery',
+    category: 'uiux',
+    title: { en: 'Tabriz Art Gallery', fa: 'گالری هنری تبریز' },
+    description: {
+      en: 'A unified online platform bringing together three of Tabriz\'s premier art galleries — with exhibitions, downloadable catalogs, artist profiles, and virtual tours.',
+      fa: 'یک پلتفرم آنلاین یکپارچه که سه گالری هنری برجسته‌ی تبریز را گرد هم می‌آورد — با نمایشگاه‌ها، کاتالوگ‌های قابل دانلود، پروفایل‌های هنرمندان و تورهای مجازی.',
+    },
+    tags: [tag.platform, tag.art, tag.virtual, tag.ecommerce],
+    role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
+    uiuxCopy: {
+      overview: {
+        en: 'This project is a comprehensive online platform that brings together three of Tabriz\'s most prominent art galleries in one place. Art enthusiasts can easily access current and past exhibitions, explore each gallery\'s unique collection, and experience virtual tours that recreate the feeling of visiting a physical gallery.\n\nThe project set out to achieve four core goals: showcasing exhibitions and artworks from all three galleries; enabling visitors to view and download catalogs for listed exhibitions; offering clear contact information — including email, maps, and opening hours — for each gallery; and creating an intuitive, delightful experience that truly feels like stepping into a real gallery.',
+        fa: 'این پروژه یک پلتفرم آنلاین جامع است که سه گالری هنری برجسته‌ی تبریز را در یک مکان گرد هم می‌آورد. هنردوستان می‌توانند به راحتی به نمایشگاه‌های جاری و گذشته دسترسی داشته باشند، مجموعه‌ی منحصر به فرد هر گالری را کشف کنند و تورهای مجازی را تجربه کنند که حس بازدید از یک گالری فیزیکی را بازآفرینی می‌کنند.\n\nاین پروژه چهار هدف اصلی را دنبال می‌کرد: نمایش نمایشگاه‌ها و آثار هنری از هر سه گالری؛ امکان مشاهده و دانلود کاتالوگ‌های نمایشگاه‌های فهرست‌شده؛ ارائه‌ی اطلاعات تماس واضح — شامل ایمیل، نقشه و ساعات کار — برای هر گالری؛ و ایجاد یک تجربه‌ی شهودی و دلپذیر که واقعاً حس قدم گذاشتن در یک گالری واقعی را منتقل کند.',
+      },
+      challenge: {
+        en: 'The project presented four key challenges. Consolidating content from three distinct galleries into a single, cohesive structure that felt intuitive rather than overwhelming. Presenting extensive exhibition archives with a clear organizational system, visually appealing layouts, and easy access to a wide variety of artworks. Designing navigation that allows effortless movement between exhibitions, galleries, and artwork pages while maintaining overall coherence. Optimizing performance and load times through smart handling of large multimedia assets, so the experience remains fast and seamless even with rich visual content.',
+        fa: 'این پروژه با چهار چالش اصلی روبه‌رو بود. ادغام محتوا از سه گالری متمایز در یک ساختار منسجم که شهودی باشد نه گیج‌کننده. ارائه‌ی آرشیوهای گسترده‌ی نمایشگاه با یک سیستم سازمانی واضح، چیدمان‌های بصری جذاب و دسترسی آسان به طیف متنوعی از آثار هنری. طراحی ناوبری که حرکت بی‌دردسر بین نمایشگاه‌ها، گالری‌ها و صفحات آثار هنری را ممکن می‌سازد در حالی که انسجام کلی حفظ می‌شود. بهینه‌سازی عملکرد و زمان بارگذاری از طریق مدیریت هوشمند دارایی‌های چندرسانه‌ای بزرگ تا تجربه حتی با محتوای بصری غنی سریع و بی‌وقفه باشد.',
+      },
+      process: {
+        en: 'The process began with targeted user research — interviews with art enthusiasts and gallery managers to understand their browsing preferences and purchasing behaviors, ensuring the platform addresses real needs. A competitive analysis followed, studying leading art gallery websites to identify best practices in layout, user flow, and e-commerce integration.\n\nFrom those insights, comprehensive wireframes were built covering the homepage, exhibition pages, artwork details, purchase flow, and contact sections. An interactive prototype validated navigation and gallery-switching, with user feedback shaping each refinement. The final UI design balances minimalist whitespace with rich imagery — enhancing the artistic atmosphere while maintaining clear commercial functionality.',
+        fa: 'فرآیند با تحقیق کاربری هدفمند آغاز شد — مصاحبه با هنردوستان و مدیران گالری برای درک ترجیحات مرور و رفتارهای خرید آن‌ها تا پلتفرم نیازهای واقعی را برآورده کند. سپس یک تحلیل رقابتی جامع انجام شد و وب‌سایت‌های برجسته‌ی گالری هنری مطالعه شدند تا بهترین شیوه‌ها در طراحی چیدمان، جریان کاربری و یکپارچه‌سازی تجارت الکترونیک شناسایی شوند.\n\nاز آن بینش‌ها، وایرفریم‌های جامعی برای صفحات کلیدی از جمله صفحه اصلی، صفحات نمایشگاه، جزئیات آثار، جریان خرید و بخش تماس تهیه شد. یک نمونه‌ی اولیه‌ی تعاملی ناوبری و انتقال بین گالری‌ها را اعتبارسنجی کرد و بازخورد کاربران هر بهبود را شکل داد. طراحی UI نهایی فضای سفید مینیمال را با تصاویر غنی متعادل می‌کند — جو هنری را تقویت می‌کند در حالی که کارکرد تجاری واضح را حفظ می‌کند.',
+      },
+      solution: {
+        en: 'The platform was built around modular cards and listing pages for each gallery and exhibition, making content management intuitive and the user experience smooth. Dedicated exhibition pages feature detailed artist information and downloadable catalogs. Gallery and artist profile pages showcase all available artworks in a cohesive and accessible way, with a Contact section providing email links, addresses, operating hours, and maps.\n\nThree key features bring it together: a Unified Gallery Hub on the homepage featuring live exhibitions from all three galleries; full Exhibition Pages with artist bios and downloadable catalogs; and a clear Contact & Info section for every gallery. The result is a modern digital platform that bridges the gap between physical art spaces and online audiences — enabling deeper artistic engagement in a digital-first world.',
+        fa: 'پلتفرم بر اساس کارت‌ها و صفحات فهرست ماژولار برای هر گالری و نمایشگاه ساخته شد تا مدیریت محتوا شهودی و تجربه‌ی کاربری روان باشد. صفحات نمایشگاه اختصاصی اطلاعات دقیق هنرمند و کاتالوگ‌های قابل دانلود را ارائه می‌دهند. صفحات پروفایل گالری و هنرمند همه‌ی آثار موجود را به شکلی منسجم نمایش می‌دهند، و یک بخش تماس لینک‌های ایمیل فعال، آدرس‌ها، ساعات کار و نقشه‌ها را ارائه می‌دهد.\n\nسه ویژگی کلیدی آن را کامل می‌کنند: یک مرکز یکپارچه‌ی گالری در صفحه اصلی که نمایشگاه‌های زنده از هر سه گالری را نشان می‌دهد؛ صفحات کامل نمایشگاه با بیوگرافی هنرمندان و کاتالوگ‌های قابل دانلود؛ و یک بخش واضح اطلاعات و تماس برای هر گالری. نتیجه یک پلتفرم دیجیتال مدرن است که شکاف بین فضاهای هنری فیزیکی و مخاطبان آنلاین را پر می‌کند.',
+      },
+    },
+  },
+  {
     slug: 'academic-hu',
     category: 'uiux',
     title: { en: 'Academic Hu Portfolio', fa: 'پورتفولیوی Academic Hu' },
     client: { en: 'Academic Hu', fa: 'Academic Hu' },
     description: {
-      en: 'Website and app design for the Academic Hu portfolio.',
-      fa: 'طراحی وب‌سایت و اپلیکیشن پورتفولیوی Academic Hu.',
+      en: 'Design and implementation of a comprehensive, user-friendly website for a university professor — serving as a bridge between the professor, students, and the scientific community. The platform integrates three core functions: delivering course materials, sharing research publications, and facilitating communication with students.',
+      fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه — به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پلتفرم سه عملکرد اصلی را یکپارچه می‌کند: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
     },
-    tags: [tag.website, tag.app],
+    tags: [tag.website, tag.app, tag.dashboard],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
   },
   {
