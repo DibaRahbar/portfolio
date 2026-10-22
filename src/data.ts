@@ -327,6 +327,29 @@ const allProjects: Project[] = [
     },
   },
   {
+    slug: 'academic-hu',
+    category: 'uiux',
+    title: { en: 'Academic Hu', fa: 'Academic Hu' },
+    client: { en: 'Academic Hu', fa: 'Academic Hu' },
+    description: {
+      en: 'Design and implementation of a comprehensive, user-friendly website for a university professor to serve as a bridge between the professor, students, and the scientific community. This project was carried out with the goal of integrating three core functions into a single platform: delivering course materials, sharing research publications, and facilitating communication with students.',
+      fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پروژه با هدف یکپارچه‌سازی سه عملکرد اصلی در یک پلتفرم انجام شد: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
+    },
+    tags: [tag.website, tag.app, tag.dashboard],
+    role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
+  },
+  {
+    slug: 'photography-portfolio',
+    category: 'uiux',
+    title: { en: 'Photography Portfolio', fa: 'پورتفولیوی عکاسی' },
+    description: {
+      en: 'Website and app design for a photography portfolio.',
+      fa: 'طراحی وب‌سایت و اپلیکیشن یک پورتفولیوی عکاسی.',
+    },
+    tags: [tag.website, tag.app],
+    role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
+  },
+  {
     slug: 'tabriz-art-gallery',
     category: 'uiux',
     title: { en: 'Tabriz Art Gallery', fa: 'گالری هنری تبریز' },
@@ -354,29 +377,6 @@ const allProjects: Project[] = [
         fa: 'پلتفرم بر اساس کارت‌ها و صفحات فهرست ماژولار برای هر گالری و نمایشگاه ساخته شد تا مدیریت محتوا شهودی و تجربه‌ی کاربری روان باشد. صفحات نمایشگاه اختصاصی اطلاعات دقیق هنرمند و کاتالوگ‌های قابل دانلود را ارائه می‌دهند. صفحات پروفایل گالری و هنرمند همه‌ی آثار موجود را به شکلی منسجم نمایش می‌دهند، و یک بخش تماس لینک‌های ایمیل فعال، آدرس‌ها، ساعات کار و نقشه‌ها را ارائه می‌دهد.\n\nسه ویژگی کلیدی آن را کامل می‌کنند: یک مرکز یکپارچه‌ی گالری در صفحه اصلی که نمایشگاه‌های زنده از هر سه گالری را نشان می‌دهد؛ صفحات کامل نمایشگاه با بیوگرافی هنرمندان و کاتالوگ‌های قابل دانلود؛ و یک بخش واضح اطلاعات و تماس برای هر گالری. نتیجه یک پلتفرم دیجیتال مدرن است که شکاف بین فضاهای هنری فیزیکی و مخاطبان آنلاین را پر می‌کند.',
       },
     },
-  },
-  {
-    slug: 'academic-hu',
-    category: 'uiux',
-    title: { en: 'Academic Hu', fa: 'Academic Hu' },
-    client: { en: 'Academic Hu', fa: 'Academic Hu' },
-    description: {
-      en: 'Design and implementation of a comprehensive, user-friendly website for a university professor to serve as a bridge between the professor, students, and the scientific community. This project was carried out with the goal of integrating three core functions into a single platform: delivering course materials, sharing research publications, and facilitating communication with students.',
-      fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پروژه با هدف یکپارچه‌سازی سه عملکرد اصلی در یک پلتفرم انجام شد: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
-    },
-    tags: [tag.website, tag.app, tag.dashboard],
-    role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
-  },
-  {
-    slug: 'photography-portfolio',
-    category: 'uiux',
-    title: { en: 'Photography Portfolio', fa: 'پورتفولیوی عکاسی' },
-    description: {
-      en: 'Website and app design for a photography portfolio.',
-      fa: 'طراحی وب‌سایت و اپلیکیشن یک پورتفولیوی عکاسی.',
-    },
-    tags: [tag.website, tag.app],
-    role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
   },
 
   // Placeholder works (invented details). Replace or remove before sharing the site.
