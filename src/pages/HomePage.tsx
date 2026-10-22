@@ -73,8 +73,12 @@ function HeroSection() {
           variants={{ show: { transition: { staggerChildren: 0.12, delayChildren: startDelay } } }}
           className="flex w-full flex-col items-center"
         >
-          <motion.p variants={fadeItem} className="text-lg font-normal sm:text-xl">
-            {t('heroHi')} <span className="text-brand">{t('name')}</span> {t('heroHiEnd')}
+          <motion.p variants={fadeItem} className="flex items-baseline justify-center gap-2 text-lg font-normal sm:gap-3 sm:text-xl">
+            <span className="-rotate-3 font-hand text-2xl leading-none font-semibold sm:text-4xl rtl:rotate-0 rtl:font-sans rtl:text-lg rtl:font-normal sm:rtl:text-xl">
+              {t('heroHi')}
+            </span>
+            <span className="text-brand">{t('name')}</span>
+            <span>{t('heroHiEnd')}</span>
           </motion.p>
 
           <motion.h1

@@ -11,7 +11,8 @@ export type Website = {
 }
 
 export type Category = 'brand' | 'social' | 'uiux'
-export const categories: Category[] = ['brand', 'social', 'uiux']
+/** Display order: filter buttons and the "All" list. */
+export const categories: Category[] = ['uiux', 'brand', 'social']
 
 export type Result = {
   value: number
@@ -139,7 +140,7 @@ export const websites: Website[] = [
   },
 ]
 
-export const projects: Project[] = [
+const allProjects: Project[] = [
   // Real works (details beyond name, category and role are not filled in yet).
   {
     slug: 'kooki',
@@ -251,3 +252,6 @@ export const projects: Project[] = [
     ],
   },
 ]
+
+/** Projects grouped in category order (UI/UX, Brand Identity, Social Media). */
+export const projects: Project[] = [...allProjects].sort((a, b) => categories.indexOf(a.category) - categories.indexOf(b.category))
