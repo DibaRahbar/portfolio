@@ -58,22 +58,22 @@ function ThemeToggle() {
   )
 }
 
-export function Shell({ children }: { children: ReactNode }) {
+export function Shell({ children, hero }: { children: ReactNode; hero?: ReactNode }) {
   const { t } = useLang()
   return (
     <>
-      <main className="mx-auto max-w-[1264px] px-4 pt-6 sm:px-8 sm:pt-10 xl:px-0">
-        <header className="flex items-center justify-between gap-4">
-          <a href="#/" className="text-xl font-semibold tracking-tight">
-            {t('name')}
-          </a>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <LanguageSwitch />
-          </div>
-        </header>
-        {children}
-      </main>
+      {/* h-20 (5rem): the hero subtracts this so header + hero fill exactly one screen. */}
+      <header className="mx-auto flex h-20 max-w-[1264px] items-center justify-between gap-4 px-4 sm:px-8 xl:px-0">
+        <a href="#/" className="text-xl font-semibold tracking-tight">
+          {t('name')}
+        </a>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <LanguageSwitch />
+        </div>
+      </header>
+      {hero}
+      <main className="mx-auto max-w-[1264px] px-4 sm:px-8 xl:px-0">{children}</main>
       <Footer />
     </>
   )

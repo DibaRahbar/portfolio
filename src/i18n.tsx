@@ -8,9 +8,13 @@ export type Localized = Record<Lang, string>
 const en = {
   name: 'Diba Rahbar',
   available: 'Open to new projects',
-  heroLead: 'One designer for your brand, your feed, ',
-  heroHighlight: 'and your product.',
-  heroSub: "I'm Diba, a product designer in Tabriz. Pick a category to see the work and how I got there.",
+  heroGreeting: 'Hi! I’m Diba Rahbar',
+  heroRole1: 'Brand & Visual Identity,',
+  heroRole2: 'UI/UX Designer',
+  heroBasedIn: 'based in',
+  heroCity: 'Tabriz',
+  heroBody:
+    'Focusing on visual storytelling, intuitive experiences, and scalable systems. With visual identity design, intuitive UI/UX, and AI-driven content creation, I help businesses build simple, functional, and scalable digital brands. Started design in 2021 and AI content creation one year ago.',
   realWebsites: 'Real websites',
   uiux: 'UI/UX',
   caseStudies: 'Selected work',
@@ -70,9 +74,13 @@ type Key = MessageKey
 const fa: Record<Key, string> = {
   name: 'دیبا رهبر',
   available: 'پذیرای پروژه‌های جدید',
-  heroLead: 'یک طراح برای برندتان، صفحه‌ی اجتماعی‌تان ',
-  heroHighlight: 'و محصولتان.',
-  heroSub: 'دیبا هستم، طراح محصول در تبریز. یک دسته را انتخاب کنید تا کارها و مسیر رسیدن به آن‌ها را ببینید.',
+  heroGreeting: 'سلام! من دیبا رهبر هستم',
+  heroRole1: 'طراح برند و هویت بصری،',
+  heroRole2: 'طراح رابط و تجربه کاربری',
+  heroBasedIn: 'ساکن',
+  heroCity: 'تبریز',
+  heroBody:
+    'تمرکز بر روایت بصری، تجربه‌های شهودی و سیستم‌های مقیاس‌پذیر. با طراحی هویت بصری، رابط و تجربه کاربری شهودی و تولید محتوای مبتنی بر هوش مصنوعی، به کسب‌وکارها کمک می‌کنم برندهای دیجیتال ساده، کاربردی و مقیاس‌پذیر بسازند. طراحی را از سال ۲۰۲۱ و تولید محتوای هوش مصنوعی را از یک سال پیش شروع کرده‌ام.',
   realWebsites: 'وب‌سایت‌های واقعی',
   uiux: 'UI/UX',
   caseStudies: 'نمونه‌کارهای منتخب',

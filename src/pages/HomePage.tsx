@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
 import { useRef, useState } from 'react'
+import { ProfilePhoto } from '@/components/site/ProfilePhoto'
 import { CategoryFilter, ProjectGrid, filterProjects } from '@/components/site/ProjectFilter'
 import { SectionHeading, Shell } from '@/components/site/Shell'
 import type { Category } from '@/data'
@@ -17,7 +18,7 @@ function ProjectsSection() {
   const viewAllHref = category ? `#/projects?category=${category}` : '#/projects'
 
   return (
-    <section className="mt-14 sm:mt-20">
+    <section id="projects" className="mt-14 scroll-mt-6 sm:mt-20">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading label={t('caseStudies')} title={t('projects')} />
         <CategoryFilter value={category} onChange={setCategory} />
@@ -38,7 +39,10 @@ function ProjectsSection() {
   )
 }
 
-/** Hero that scrubs away as you scroll: it drifts up, shrinks a little, and fades. */
+/**
+ * Centered hero that fills the first screen on desktop (header + hero = 100vh) and sizes to its
+ * content on mobile. It drifts up and fades as you scroll past.
+ */
 function HeroSection() {
   const { t } = useLang()
   const ref = useRef<HTMLElement>(null)
@@ -47,23 +51,32 @@ function HeroSection() {
   const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 40, mass: 0.4 })
   const opacity = useTransform(progress, [0, 1], [1, 0.1])
   const y = useTransform(progress, [0, 1], [0, -80])
-  const scale = useTransform(progress, [0, 1], [1, 0.92])
+  const scale = useTransform(progress, [0, 1], [1, 0.95])
 
   return (
-    <section ref={ref} className="mt-14">
-      <motion.div style={reduce ? undefined : { opacity, y, scale }} className="flex flex-col items-center text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-brand-soft/30 bg-secondary px-3.5 py-1.5 text-[13px] font-medium text-secondary-foreground">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand opacity-60 motion-reduce:hidden" />
-            <span className="relative inline-flex size-2 rounded-full bg-brand" />
+    <section ref={ref} className="flex w-full items-center py-10 lg:min-h-[calc(100svh-5rem)] lg:py-0">
+      <motion.div
+        style={reduce ? undefined : { opacity, y, scale }}
+        className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 text-center lg:px-20"
+      >
+        <p className="text-lg font-normal sm:text-xl">{t('heroGreeting')}</p>
+
+        <h1 className="mt-5 text-[2rem] leading-[1.15] font-black tracking-[-0.02em] uppercase sm:text-5xl lg:text-6xl rtl:leading-[1.45]">
+          <span className="block">{t('heroRole1')}</span>
+          <span className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-6 lg:mt-4">
+            <ProfilePhoto className="size-[72px] sm:size-28 lg:size-[150px]" />
+            <span>{t('heroRole2')}</span>
           </span>
-          {t('available')}
-        </span>
-        <h1 className="mt-6 max-w-[1100px] text-[2.6rem] leading-[1.08] font-bold tracking-[-0.03em] sm:text-7xl sm:leading-[1.05] rtl:leading-[1.3]">
-          {t('heroLead')}
-          <span className="text-brand">{t('heroHighlight')}</span>
         </h1>
-        <p className="mt-5 text-base text-muted-foreground sm:text-lg">{t('heroSub')}</p>
+
+        <p className="mt-6 flex items-baseline gap-2 sm:mt-8 sm:gap-3">
+          <span className="text-lg italic sm:text-2xl rtl:not-italic">{t('heroBasedIn')}</span>
+          <span className="text-3xl font-black tracking-tight text-brand sm:text-5xl">{t('heroCity')}</span>
+        </p>
+
+        <p className="mt-6 max-w-[800px] text-base leading-7 text-[#555] sm:mt-8 sm:text-lg sm:leading-8 dark:text-[#b9afc7]">
+          {t('heroBody')}
+        </p>
       </motion.div>
     </section>
   )
@@ -71,8 +84,7 @@ function HeroSection() {
 
 export function HomePage() {
   return (
-    <Shell>
-      <HeroSection />
+    <Shell hero={<HeroSection />}>
       <ProjectsSection />
     </Shell>
   )
