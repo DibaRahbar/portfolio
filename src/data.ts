@@ -358,11 +358,11 @@ const allProjects: Project[] = [
   {
     slug: 'academic-hu',
     category: 'uiux',
-    title: { en: 'Academic Hu Portfolio', fa: 'پورتفولیوی Academic Hu' },
+    title: { en: 'Academic Hu', fa: 'Academic Hu' },
     client: { en: 'Academic Hu', fa: 'Academic Hu' },
     description: {
-      en: 'Design and implementation of a comprehensive, user-friendly website for a university professor — serving as a bridge between the professor, students, and the scientific community. The platform integrates three core functions: delivering course materials, sharing research publications, and facilitating communication with students.',
-      fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه — به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پلتفرم سه عملکرد اصلی را یکپارچه می‌کند: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
+      en: 'Design and implementation of a comprehensive, user-friendly website for a university professor to serve as a bridge between the professor, students, and the scientific community. This project was carried out with the goal of integrating three core functions into a single platform: delivering course materials, sharing research publications, and facilitating communication with students.',
+      fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پروژه با هدف یکپارچه‌سازی سه عملکرد اصلی در یک پلتفرم انجام شد: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
     },
     tags: [tag.website, tag.app, tag.dashboard],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
