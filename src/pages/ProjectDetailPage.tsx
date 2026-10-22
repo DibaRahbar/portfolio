@@ -32,12 +32,12 @@ function HeroImage({ src, alt }: { src: string; alt: string }) {
 function MetaCard({ project }: { project: Project }) {
   const { t, l, n } = useLang()
   const rows = [
-    [t('client'), l(project.client)],
-    [t('year'), n(project.year)],
+    project.client && [t('client'), l(project.client)],
+    project.year !== undefined && [t('year'), n(project.year)],
     [t('role'), l(project.role)],
-    [t('duration'), l(project.duration)],
-    [t('deliverables'), l(project.deliverables)],
-  ]
+    project.duration && [t('duration'), l(project.duration)],
+    project.deliverables && [t('deliverables'), l(project.deliverables)],
+  ].filter((row): row is string[] => Boolean(row))
   return (
     <dl className="h-fit rounded-3xl border bg-background/80 p-6 backdrop-blur">
       {rows.map(([label, value], i) => (
@@ -52,6 +52,7 @@ function MetaCard({ project }: { project: Project }) {
 
 function Results({ project }: { project: Project }) {
   const { t, l, lang, locale } = useLang()
+  if (!project.results?.length) return null
   return (
     <section className="mt-16">
       <h2 className={`${mono} text-brand-soft`}>{t('results')}</h2>
@@ -194,7 +195,12 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
       <Reveal className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
         <div>
           <p className={`${mono} text-brand-soft`}>
-            {t(categoryLabel[project.category])} · {n(project.year)} — {l(project.place)}
+            {[
+              t(categoryLabel[project.category]),
+              [project.year !== undefined && n(project.year), project.place && l(project.place)].filter(Boolean).join(' — '),
+            ]
+              .filter(Boolean)
+              .join(' · ')}
           </p>
           <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-[-0.03em] sm:text-7xl sm:leading-[1.05] rtl:leading-[1.3]">{title}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">{l(project.description)}</p>

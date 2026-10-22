@@ -8,7 +8,8 @@ const SEEN_KEY = 'intro-seen'
 const MIN_MS = 2000
 const MAX_MS = 4000
 
-function shouldShow() {
+/** True when the loading screen is about to play (first visit of the session). */
+export function introPending() {
   try {
     return sessionStorage.getItem(SEEN_KEY) !== '1'
   } catch {
@@ -24,7 +25,7 @@ function shouldShow() {
 export function Preloader() {
   const { t, n, lang } = useLang()
   const reduce = useReducedMotion()
-  const [show, setShow] = useState(shouldShow)
+  const [show, setShow] = useState(introPending)
   const progress = useMotionValue(0)
   const label = useTransform(progress, v => n(Math.round(v)))
   const bar = useTransform(progress, [0, 100], [0, 1])

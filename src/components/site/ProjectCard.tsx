@@ -12,10 +12,12 @@ export function ProjectCard({ project }: { project: Project }) {
   const { isDark } = useThemeMode()
   const title = l(project.title)
   const meta = [
-    [t('deliverables'), l(project.deliverables)],
-    [t('duration'), l(project.duration)],
+    project.deliverables && [t('deliverables'), l(project.deliverables)],
+    project.duration && [t('duration'), l(project.duration)],
     [t('role'), l(project.role)],
-  ]
+  ].filter((row): row is string[] => Boolean(row))
+  // Year and city, when known.
+  const when = [project.year !== undefined && n(project.year), project.place && l(project.place)].filter(Boolean).join(' — ')
 
   return (
     <a
@@ -39,9 +41,9 @@ export function ProjectCard({ project }: { project: Project }) {
           <Badge className="absolute start-3 top-3 h-7 px-3 text-[13px]">{t(categoryLabel[project.category])}</Badge>
         </div>
         <div className="px-2 pt-5 pb-2">
-          <p className="font-mono text-[11px] tracking-[0.06em] text-brand-soft uppercase">
-            {n(project.year)} — {l(project.place)}
-          </p>
+          {when && (
+            <p className="font-mono text-[11px] tracking-[0.06em] text-brand-soft uppercase">{when}</p>
+          )}
           <h3 className="mt-2 text-[28px] leading-[34px] font-semibold tracking-tight transition-colors group-hover:text-brand">
             {title}
           </h3>

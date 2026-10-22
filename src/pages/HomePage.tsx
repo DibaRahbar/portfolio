@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
 import { useRef, useState } from 'react'
-import { ProfilePhoto } from '@/components/site/ProfilePhoto'
+import { introPending } from '@/components/site/Preloader'
 import { CategoryFilter, ProjectGrid, filterProjects } from '@/components/site/ProjectFilter'
 import { SectionHeading, Shell } from '@/components/site/Shell'
 import type { Category } from '@/data'
@@ -39,9 +39,15 @@ function ProjectsSection() {
   )
 }
 
+const fadeItem = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } },
+}
+
 /**
- * Centered hero that fills the first screen on desktop (header + hero = 100vh) and sizes to its
- * content on mobile. It drifts up and fades as you scroll past.
+ * Centered text hero that fills the first screen on desktop (header + hero = 100vh) and sizes to its
+ * content on mobile. Its lines fade in one after another (after the loading screen on a first visit),
+ * and the whole block drifts up and fades as you scroll past.
  */
 function HeroSection() {
   const { t } = useLang()
@@ -52,6 +58,8 @@ function HeroSection() {
   const opacity = useTransform(progress, [0, 1], [1, 0.1])
   const y = useTransform(progress, [0, 1], [0, -80])
   const scale = useTransform(progress, [0, 1], [1, 0.95])
+  // Wait for the loading screen's slide-up before the text fades in.
+  const [startDelay] = useState(() => (introPending() ? 2.5 : 0.1))
 
   return (
     <section ref={ref} className="flex w-full items-center py-10 lg:min-h-[calc(100svh-5rem)] lg:py-0">
@@ -59,24 +67,42 @@ function HeroSection() {
         style={reduce ? undefined : { opacity, y, scale }}
         className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 text-center lg:px-20"
       >
-        <p className="text-lg font-normal sm:text-xl">{t('heroGreeting')}</p>
+        <motion.div
+          initial={reduce ? false : 'hidden'}
+          animate="show"
+          variants={{ show: { transition: { staggerChildren: 0.12, delayChildren: startDelay } } }}
+          className="flex w-full flex-col items-center"
+        >
+          <motion.p variants={fadeItem} className="text-lg font-normal sm:text-xl">
+            {t('heroGreeting')}
+          </motion.p>
 
-        <h1 className="mt-5 text-[2rem] leading-[1.15] font-black tracking-[-0.02em] uppercase sm:text-5xl lg:text-6xl rtl:leading-[1.45]">
-          <span className="block">{t('heroRole1')}</span>
-          <span className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-6 lg:mt-4">
-            <ProfilePhoto className="size-[72px] sm:size-28 lg:size-[150px]" />
-            <span>{t('heroRole2')}</span>
-          </span>
-        </h1>
+          <motion.h1
+            variants={fadeItem}
+            className="mt-5 max-w-[1100px] text-[2rem] leading-[1.15] font-black tracking-[-0.02em] text-balance uppercase sm:text-5xl lg:text-6xl rtl:leading-[1.45]"
+          >
+            {t('heroHeadline')}
+          </motion.h1>
 
-        <p className="mt-6 flex items-baseline gap-2 sm:mt-8 sm:gap-3">
-          <span className="text-lg italic sm:text-2xl rtl:not-italic">{t('heroBasedIn')}</span>
-          <span className="text-3xl font-black tracking-tight text-brand sm:text-5xl">{t('heroCity')}</span>
-        </p>
+          <motion.p variants={fadeItem} className="mt-6 flex items-baseline gap-2 sm:mt-8 sm:gap-3">
+            <span className="text-lg italic sm:text-2xl rtl:not-italic">{t('heroBasedIn')}</span>
+            <span className="text-3xl font-black tracking-tight text-brand sm:text-5xl">{t('heroCity')}</span>
+          </motion.p>
 
-        <p className="mt-6 max-w-[800px] text-base leading-7 text-[#555] sm:mt-8 sm:text-lg sm:leading-8 dark:text-[#b9afc7]">
-          {t('heroBody')}
-        </p>
+          <motion.p
+            variants={fadeItem}
+            className="mt-6 max-w-[800px] text-base font-semibold text-[#333] sm:mt-8 sm:text-lg dark:text-[#e4dcef]"
+          >
+            {t('heroFocus')}
+          </motion.p>
+
+          <motion.p
+            variants={fadeItem}
+            className="mt-4 max-w-[800px] text-base leading-7 text-[#555] sm:text-lg sm:leading-8 dark:text-[#b9afc7]"
+          >
+            {t('heroBody')}
+          </motion.p>
+        </motion.div>
       </motion.div>
     </section>
   )
