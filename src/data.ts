@@ -103,7 +103,6 @@ const tag = {
   app: { en: 'App', fa: 'اپلیکیشن' },
   platform: { en: 'Platform', fa: 'پلتفرم' },
   virtual: { en: 'Virtual', fa: 'مجازی' },
-  dashboard: { en: 'Dashboard', fa: 'داشبورد' },
   art: { en: 'Art & Culture', fa: 'هنر و فرهنگ' },
 }
 
