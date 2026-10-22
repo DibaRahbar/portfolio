@@ -32,6 +32,17 @@ export type BrandIdentity = {
   stickers?: number
 }
 
+/** Per-project copy for brand case study sections. When present, overrides the generic placeholder text. */
+export type BrandCopy = {
+  intro?: Localized
+  deliverablesList?: Localized[]
+  brief?: Localized
+  approach?: Localized
+  positioning?: Localized
+  visualIdentity?: Localized
+  result?: Localized
+}
+
 // Fields marked optional are simply not shown when missing, so a real project never needs made-up details.
 export type Project = {
   slug: string
@@ -48,6 +59,8 @@ export type Project = {
   results?: Result[]
   /** Brand projects: palette, logos, fonts, illustrations, stickers. */
   identity?: BrandIdentity
+  /** Brand projects: real case-study copy. When present, replaces generic placeholders. */
+  copy?: BrandCopy
   /**
    * Result gallery layout. 'mixed11': 3 wide + 8 regular. 'v5h4': 5 vertical + 4 horizontal.
    * 'horizontal11': 11 horizontal. Brand projects without one use a default mix.
@@ -148,41 +161,156 @@ const allProjects: Project[] = [
     title: { en: 'KOOKI – Cookie Shop', fa: 'KOOKI – فروشگاه کوکی' },
     client: { en: 'KOOKI', fa: 'KOOKI' },
     description: {
-      en: 'Brand identity for KOOKI, a cookie shop.',
-      fa: 'هویت بصری برند KOOKI، یک فروشگاه کوکی.',
+      en: 'Brand identity for KOOKI, a modern cookie bakery built around simplicity, character and everyday enjoyment.',
+      fa: 'هویت بصری برند KOOKI، یک نانوایی کوکی مدرن بنا شده بر پایه‌ی سادگی، شخصیت و لذت روزانه.',
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
     identity: { palette: swatches(5), logos: 3, illustrations: 1 },
     galleryLayout: 'v5h4',
+    copy: {
+      intro: {
+        en: 'KOOKI is a modern cookie bakery built around simplicity, character, and everyday enjoyment. The project focuses on turning a simple product into a playful and memorable brand through a strong visual identity. At the heart of the identity is a custom mascot, supported by bold typography, expressive illustrations, and a warm, natural color palette inspired by baked goods.',
+        fa: 'KOOKI یک نانوایی کوکی مدرن است که بر پایه‌ی سادگی، شخصیت و لذت روزانه بنا شده است. این پروژه بر تبدیل یک محصول ساده به یک برند بازیگوش و به‌یادماندنی از طریق یک هویت بصری قوی تمرکز دارد. در قلب هویت، یک ماسکوت سفارشی قرار دارد که با تایپوگرافی جسورانه، تصویرسازی‌های بیانگر و یک پالت رنگ گرم و طبیعی الهام‌گرفته از محصولات پخته‌شده همراه است.',
+      },
+      deliverablesList: [
+        { en: 'Typography & Logotype', fa: 'تایپوگرافی و لوگوتایپ' },
+        { en: 'Brand Color Palette', fa: 'پالت رنگ برند' },
+        { en: 'Mascot Illustration System', fa: 'سیستم تصویرسازی ماسکوت' },
+        { en: 'Primary Packaging – Cookie Bags', fa: 'بسته‌بندی اصلی – کیسه‌های کوکی' },
+        { en: 'Menu Cards', fa: 'منو کارت‌ها' },
+        { en: 'Loyalty Cards', fa: 'کارت‌های وفاداری' },
+        { en: 'Brown Paper Bags / Takeaway Packaging', fa: 'کیسه‌های کاغذی قهوه‌ای / بسته‌بندی بیرون‌بر' },
+        { en: 'Secondary Paper Packaging', fa: 'بسته‌بندی کاغذی ثانویه' },
+        { en: 'Outdoor Signage & A-Boards', fa: 'تابلوهای خارجی و تابلوهای ایستاده' },
+      ],
+      brief: {
+        en: 'The goal was to design a full visual identity and packaging system for a contemporary cookie bakery. The challenge was to keep the brand playful and full of personality, while making sure everything stays clean, consistent, and easy to use across different applications and flavor variations.',
+        fa: 'هدف طراحی یک سیستم هویت بصری و بسته‌بندی کامل برای یک نانوایی کوکی معاصر بود. چالش این بود که برند بازیگوش و پر از شخصیت باشد، در حالی که همه چیز تمیز، منسجم و آسان برای استفاده در کاربردهای مختلف و تنوع طعم‌ها باشد.',
+      },
+      approach: {
+        en: 'The identity is built around personality first, not decoration. A custom mascot, bold type, and a simple graphic system form the core of the brand. Each flavor gets its own color and visual detail, while everything stays part of one unified system. The packaging is designed as a single recyclable kraft bag that can fit different order sizes, making the system more flexible and reducing material use.',
+        fa: 'هویت از شخصیت ساخته شده، نه تزئین. یک ماسکوت سفارشی، تایپوگرافی جسورانه و یک سیستم گرافیکی ساده هسته‌ی اصلی برند را تشکیل می‌دهند. هر طعم رنگ و جزئیات بصری خاص خود را دارد، اما همه چیز بخشی از یک سیستم یکپارچه باقی می‌ماند. بسته‌بندی به‌عنوان یک کیسه‌ی کرافت بازیافتی طراحی شده که در اندازه‌های مختلف سفارش قرار می‌گیرد و سیستم را انعطاف‌پذیرتر کرده و مصرف مواد را کاهش می‌دهد.',
+      },
+      positioning: {
+        en: 'KOOKI is a friendly, modern bakery focused on simple joys and everyday treats. Instead of luxury or nostalgia, the brand uses a warm and approachable visual language built around character and consistency.',
+        fa: 'KOOKI یک نانوایی مدرن و صمیمی است که بر لذت‌های ساده و روزانه تمرکز دارد. به‌جای تجمل یا نوستالژی، برند از یک زبان بصری گرم و در دسترس استفاده می‌کند که بر پایه‌ی شخصیت و ثبات ساخته شده است.',
+      },
+      visualIdentity: {
+        en: 'The identity centers on a custom cat mascot and a bold logo that define the brand\'s look and feel. Warm browns, soft neutrals, and natural accents reflect the handmade nature of the product. Supporting illustrations and a modular system help the brand expand across packaging, print, and future applications while staying consistent.',
+        fa: 'هویت بر یک ماسکوت گربه‌ی سفارشی و یک لوگوی جسورانه تمرکز دارد که ظاهر و حس برند را تعریف می‌کنند. قهوه‌ای‌های گرم، خنثی‌های ملایم و لهجه‌های طبیعی ماهیت دست‌ساز محصول را منعکس می‌کنند. تصویرسازی‌های حمایتی و یک سیستم ماژولار به برند کمک می‌کنند تا در بسته‌بندی، چاپ و کاربردهای آینده گسترش یابد، در حالی که سازگاری خود را حفظ کند.',
+      },
+      result: {
+        en: 'KOOKI becomes more than a cookie bakery — it turns into a playful, character-driven brand experience. A clear system, a strong mascot, and a simple packaging solution make it easy to recognize, flexible to use, and ready to grow.',
+        fa: 'KOOKI بیش از یک نانوایی کوکی می‌شود — به یک تجربه‌ی برند بازیگوش و مبتنی بر شخصیت تبدیل می‌شود. یک سیستم واضح، یک ماسکوت قوی و یک راه‌حل ساده‌ی بسته‌بندی آن را آسان برای شناخت، انعطاف‌پذیر برای استفاده و آماده برای رشد می‌کند.',
+      },
+    },
   },
   {
     slug: 'coralia',
     category: 'brand',
     title: { en: 'CORALIA – Beach Hotel', fa: 'CORALIA – هتل ساحلی' },
     client: { en: 'CORALIA', fa: 'CORALIA' },
+    year: 2026,
     description: {
-      en: 'Brand identity for CORALIA, a beach hotel.',
-      fa: 'هویت بصری برند CORALIA، یک هتل ساحلی.',
+      en: 'Brand identity for CORALIA, a modern beach hotel on the Antalya coast with a hand-drawn coral motif and a warm coastal aesthetic.',
+      fa: 'هویت بصری برند CORALIA، یک هتل ساحلی مدرن در ساحل آنتالیا با نقش مرجان دست‌کشیده و زیبایی‌شناسی گرم ساحلی.',
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
     identity: { palette: swatches(5), logos: 4, fonts: 2, stickers: 1 },
     galleryLayout: 'mixed11',
+    copy: {
+      intro: {
+        en: 'Coralia is a modern beach hotel on the Antalya coast, facing the sea. With a minimal visual identity, it turns a simple seaside stay into a warm, memorable experience. Rather than luxury, the brand offers a friendly, effortless aesthetic rooted in the coast\'s relaxed rhythm. At its heart, the identity tells a story of endless beach days through a hand-drawn coral motif, fluid typography, and a vibrant sea-and-sun palette.',
+        fa: 'کورالیا یک هتل ساحلی مدرن در ساحل آنتالیا است که روبه‌روی دریا قرار دارد. با یک هویت بصری مینیمال، یک اقامت ساده‌ی کنار دریا را به یک تجربه‌ی گرم و به‌یادماندنی تبدیل می‌کند. به‌جای تجمل، برند یک زیبایی‌شناسی صمیمی و بی‌دردسر ارائه می‌دهد که ریشه در ریتم آرام ساحل دارد.',
+      },
+      deliverablesList: [
+        { en: 'Typography & Logotype', fa: 'تایپوگرافی و لوگوتایپ' },
+        { en: 'Brand Color Palette', fa: 'پالت رنگ برند' },
+        { en: 'Sticker Pack', fa: 'مجموعه استیکر' },
+        { en: 'Door Hangers', fa: 'آویزهای در' },
+        { en: 'Business Cards & Stationery', fa: 'کارت‌های ویزیت و نوشت‌افزار' },
+        { en: 'Keychains', fa: 'جاکلیدی‌ها' },
+        { en: 'Postcards', fa: 'کارت پستال‌ها' },
+        { en: 'Room Cards & Envelopes', fa: 'کارت‌های اتاق و پاکت‌ها' },
+        { en: 'Outdoor Signage', fa: 'تابلوهای خارجی' },
+        { en: 'Tote Bags', fa: 'کیف‌های توت' },
+        { en: 'Beach Umbrellas', fa: 'چترهای ساحلی' },
+      ],
+      brief: {
+        en: 'The goal was to design a complete visual identity and hospitality system for a modern coastal retreat. The challenge was to keep everything clean, consistent, and easy to execute across both digital and physical applications, while still giving the brand a unique, coastal personality.',
+        fa: 'هدف طراحی یک هویت بصری کامل و سیستم مهمانداری برای یک پناهگاه ساحلی مدرن بود. چالش این بود که همه چیز تمیز، منسجم و آسان برای اجرا در هر دو کاربرد دیجیتال و فیزیکی باشد، در حالی که به برند یک شخصیت منحصر به فرد ساحلی بدهد.',
+      },
+      approach: {
+        en: 'The identity is built around simplicity and readability. The custom coral symbol creates a strong, memorable visual anchor, while the bold logotype adds warmth and character. The color palette is intentionally flat and untextured — mirroring the sunny, laid-back vibe of Antalya. Every application is designed with a "less is more" mindset, using minimal elements and plenty of breathing room to create a system that is easy to adapt and grow.',
+        fa: 'هویت بر پایه‌ی سادگی و خوانایی ساخته شده است. نماد مرجان سفارشی یک لنگر بصری قوی و به‌یادماندنی ایجاد می‌کند، در حالی که لوگوتایپ جسورانه گرما و شخصیت اضافه می‌کند. پالت رنگ عمداً مسطح و بدون بافت است — جو آفتابی و آرام آنتالیا را منعکس می‌کند. هر کاربرد با ذهنیت «کمتر بیشتر است» طراحی شده، از عناصر حداقلی و فضای تنفسی فراوان برای ایجاد سیستمی آسان برای تطبیق و رشد استفاده می‌کند.',
+      },
+      positioning: {
+        en: 'Coralia is a friendly, inviting seaside hotel focused on sunshine, relaxation, and unforgettable summer moments. Instead of formality or over-luxury, the brand uses a warm, approachable, and visually airy language built entirely around serenity, comfort, and the genuine promise of a beach day that never ends.',
+        fa: 'کورالیا یک هتل ساحلی صمیمی و دعوت‌کننده است که بر آفتاب، آرامش و لحظات تابستانی فراموش‌نشدنی تمرکز دارد. به‌جای رسمیت یا تجمل افراطی، برند از یک زبان بصری گرم، در دسترس و بصری هوایی استفاده می‌کند که کاملاً بر آرامش، آسودگی و وعده‌ی واقعی یک روز ساحلی بنا شده است.',
+      },
+      visualIdentity: {
+        en: 'The identity centers on a clean, modern visual language that perfectly reflects the calmness and vitality of the coast. A soothing palette of coral pinks, ocean aquas, golden sands, and crisp whites captures the vibrant yet untouched spirit of the Antalya shoreline. Supported by expressive sea-life illustrations — including flowing waves, starfish, and the signature coral motif — along with generous negative space, the system creates an effortless and consistent look across welcome cards, tote bags, postcards, outdoor umbrellas, and all guest offerings.',
+        fa: 'هویت بر یک زبان بصری تمیز و مدرن تمرکز دارد که آرامش و سرزندگی ساحل را به‌خوبی منعکس می‌کند. یک پالت آرامش‌بخش از صورتی‌های مرجانی، آبی‌های اقیانوسی، شن‌های طلایی و سفیدهای تازه، روح پرجنب‌وجوش اما دست‌نخورده‌ی ساحل آنتالیا را به تصویر می‌کشد. با حمایت تصویرسازی‌های موجودات دریایی — از جمله امواج جاری، ستاره‌ی دریایی و نقش مرجان شاخص — سیستم ظاهری بی‌دردسر و منسجم در سراسر کارت‌های خوش‌آمد، کیف‌های توت، کارت پستال‌ها، چترهای ساحلی و همه‌ی خدمات مهمانان ایجاد می‌کند.',
+      },
+      result: {
+        en: 'Coralia becomes more than a place to stay — it turns into a warm, graphic-driven brand experience. With a clean system, a memorable marine symbol, and a minimal approach, the identity feels cohesive across every physical touchpoint — from beach umbrellas and tote bags to key cards and signage. An identity that is not only easily remembered, but also conveys the inviting spirit of the coast to every guest.',
+        fa: 'کورالیا بیش از یک محل اقامت می‌شود — به یک تجربه‌ی برند گرم و گرافیک‌محور تبدیل می‌شود. با یک سیستم تمیز، یک نماد دریایی به‌یادماندنی و یک رویکرد مینیمال، هویت در هر نقطه‌ی تماس فیزیکی — از چترهای ساحلی و کیف‌های توت تا کارت‌های کلید و تابلوها — منسجم احساس می‌شود.',
+      },
+    },
   },
   {
     slug: 'mars',
     category: 'brand',
     title: { en: 'MARS – Agency', fa: 'MARS – آژانس' },
     client: { en: 'MARS', fa: 'MARS' },
+    year: 2026,
     description: {
-      en: 'Brand identity for MARS, an agency.',
-      fa: 'هویت بصری برند MARS، یک آژانس.',
+      en: 'Brand identity for MARS, a modern creative and digital agency built around technology, strategy and bold visual communication.',
+      fa: 'هویت بصری برند MARS، یک آژانس خلاقانه و دیجیتال مدرن بنا شده بر پایه‌ی فناوری، استراتژی و ارتباط بصری جسورانه.',
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
     identity: { palette: swatches(4), logos: 3 },
     galleryLayout: 'horizontal11',
+    copy: {
+      intro: {
+        en: 'Mars is a modern creative and digital agency built around technology, strategy, and bold visual communication. The project focuses on turning a multidisciplinary service — combining programming, design, and marketing — into a powerful and memorable brand. At the heart of the identity is a custom geometric logo mark inspired by the planet Mars, supported by bold typography, dynamic modular patterns, and a high-contrast palette of deep black and vibrant orange.',
+        fa: 'مارس یک آژانس خلاقانه و دیجیتال مدرن است که بر پایه‌ی فناوری، استراتژی و ارتباط بصری جسورانه بنا شده است. این پروژه بر تبدیل یک سرویس چندرشته‌ای — ترکیب برنامه‌نویسی، طراحی و بازاریابی — به یک برند قدرتمند و به‌یادماندنی تمرکز دارد. در قلب هویت، یک علامت لوگوی هندسی سفارشی الهام‌گرفته از سیاره‌ی مارس قرار دارد که با تایپوگرافی جسورانه، الگوهای ماژولار پویا و یک پالت پرتضاد از سیاه عمیق و نارنجی زنده همراه است.',
+      },
+      deliverablesList: [
+        { en: 'Typography & Logotype', fa: 'تایپوگرافی و لوگوتایپ' },
+        { en: 'Brand Color Palette', fa: 'پالت رنگ برند' },
+        { en: 'Business Cards & Stationery', fa: 'کارت‌های ویزیت و نوشت‌افزار' },
+        { en: 'Envelope & Letterhead', fa: 'پاکت و سربرگ' },
+        { en: 'Bi-fold Brochure / Catalog', fa: 'بروشور دولاشو / کاتالوگ' },
+        { en: 'Tote Bag', fa: 'کیف توت' },
+        { en: 'Framed Poster / Wall Sign', fa: 'پوستر قاب‌دار / تابلوی دیواری' },
+        { en: 'Invoice', fa: 'فاکتور' },
+        { en: 'Web, App & iPad Design', fa: 'طراحی وب، اپ و آیپد' },
+      ],
+      brief: {
+        en: 'The goal was to design a full visual identity and collateral system for a contemporary agency offering programming, design, and marketing services. The challenge was to keep the brand modern, bold, and full of character, while ensuring all deliverables — from business cards and stationery to merchandise — stay clean, consistent, and easy to scale.',
+        fa: 'هدف طراحی یک سیستم هویت بصری و ضمایم کامل برای یک آژانس معاصر بود که خدمات برنامه‌نویسی، طراحی و بازاریابی ارائه می‌دهد. چالش این بود که برند مدرن، جسورانه و پر از شخصیت باشد، در حالی که همه‌ی تحویل‌دادنی‌ها — از کارت‌های ویزیت و نوشت‌افزار تا کالا — تمیز، منسجم و آسان برای مقیاس‌بندی باشند.',
+      },
+      approach: {
+        en: 'The identity is built around structure, technology, and a cosmic theme — not decoration. A custom geometric logo mark (reminiscent of the Red Planet), a bold typeface, and a modular zigzag pattern system form the core of the brand. The color palette stays minimal — deep black, vibrant orange, and clean off-white — to let the striking geometry and typography shine, reflecting the precision of code and the creativity of design.',
+        fa: 'هویت بر ساختار، فناوری و تم کیهانی ساخته شده، نه تزئین. یک علامت لوگوی هندسی سفارشی (یادآور سیاره‌ی سرخ)، یک فونت جسورانه و یک سیستم الگوی زیگزاگ ماژولار هسته‌ی اصلی برند را تشکیل می‌دهند. پالت رنگ حداقلی باقی می‌ماند — سیاه عمیق، نارنجی زنده و آف‌وایت تمیز — تا هندسه‌ی چشمگیر و تایپوگرافی بدرخشند و دقت کد و خلاقیت طراحی را منعکس کنند.',
+      },
+      positioning: {
+        en: 'Mars is a forward-thinking, full-service agency focused on innovation, clarity, and measurable results. Instead of conventional corporate aesthetics, the brand uses a confident, structured, and slightly futuristic visual language built around sharp contrasts, geometric consistency, and the mysterious energy of the Red Planet.',
+        fa: 'مارس یک آژانس پیشرو و خدمات کامل است که بر نوآوری، وضوح و نتایج قابل اندازه‌گیری تمرکز دارد. به‌جای زیبایی‌شناسی شرکتی معمولی، برند از یک زبان بصری مطمئن، ساختاریافته و کمی آینده‌نگرانه استفاده می‌کند که بر اساس تضادهای تیز، ثبات هندسی و انرژی رمزآلود سیاره‌ی سرخ بنا شده است.',
+      },
+      visualIdentity: {
+        en: 'The identity centers on a custom geometric logo and a bold color-blocking system that define the brand\'s look and feel. Deep black and vibrant orange, inspired by the Mars landscape, reflect a professional yet dynamic personality — combining the logic of programming with the creativity of design and strategy. The supporting diagonal pattern and modular design system help the brand expand across business cards, packaging, signage, and merchandise while staying consistent across every service line.',
+        fa: 'هویت بر یک لوگوی هندسی سفارشی و یک سیستم مسدودسازی رنگ جسورانه تمرکز دارد که ظاهر و حس برند را تعریف می‌کنند. سیاه عمیق و نارنجی زنده، الهام‌گرفته از چشم‌انداز مارس، یک شخصیت حرفه‌ای اما پویا را منعکس می‌کنند — که منطق برنامه‌نویسی را با خلاقیت طراحی و استراتژی ترکیب می‌کند. الگوی مورب حمایتی و سیستم طراحی ماژولار به برند کمک می‌کنند تا در کارت‌های ویزیت، بسته‌بندی، تابلوها و کالا گسترش یابد.',
+      },
+      result: {
+        en: 'Mars becomes more than just an agency — it turns into a bold, cosmic-driven brand experience. A clear visual system, a strong logo, and a flexible collateral system make it easy to recognize, efficient to use, and ready to grow across technology, design, and marketing landscapes.',
+        fa: 'مارس بیش از یک آژانس می‌شود — به یک تجربه‌ی برند جسورانه و کیهان‌محور تبدیل می‌شود. یک سیستم بصری واضح، یک لوگوی قوی و یک سیستم ضمایم انعطاف‌پذیر آن را آسان برای شناخت، کارآمد برای استفاده و آماده برای رشد در حوزه‌های فناوری، طراحی و بازاریابی می‌کند.',
+      },
+    },
   },
   {
     slug: 'academic-hu',

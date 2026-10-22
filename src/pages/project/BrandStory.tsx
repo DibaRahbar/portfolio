@@ -115,24 +115,52 @@ function IdentityAssets({ project }: { project: Project }) {
 
 /** Brand case study: Brief, Approach, Positioning, Visual identity, Result (with the final designs). */
 export function BrandStory({ project }: { project: Project }) {
-  const { t } = useLang()
+  const { t, l } = useLang()
+  const cp = project.copy
   const shots = project.galleryLayout ? layouts[project.galleryLayout] : galleries.brand
   return (
     <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">
+      {cp?.intro && (
+        <Reveal>
+          <p className="max-w-[72ch] text-lg leading-8 text-muted-foreground">{l(cp.intro)}</p>
+        </Reveal>
+      )}
+
+      {cp?.deliverablesList && (
+        <Reveal>
+          <div className="rounded-2xl border border-dashed p-6 sm:p-8">
+            <p className={`${mono} mb-4 text-xs tracking-[0.08em] text-brand-soft uppercase`}>{t('deliverables')}</p>
+            <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {cp.deliverablesList.map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-sm text-foreground/80">
+                  <span className="size-1.5 shrink-0 rounded-full bg-brand" />
+                  {l(item)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      )}
+
       <NumberedSection index={1} title={t('brief')}>
-        <StoryText>{t('briefCopy')}</StoryText>
+        <StoryText>{cp?.brief ? l(cp.brief) : t('briefCopy')}</StoryText>
       </NumberedSection>
       <NumberedSection index={2} title={t('approach')}>
-        <StoryText>{t('approachCopy')}</StoryText>
+        <StoryText>{cp?.approach ? l(cp.approach) : t('approachCopy')}</StoryText>
       </NumberedSection>
       <NumberedSection index={3} title={t('positioning')}>
-        <StoryText>{t('positioningCopy')}</StoryText>
+        <StoryText>{cp?.positioning ? l(cp.positioning) : t('positioningCopy')}</StoryText>
       </NumberedSection>
       <NumberedSection index={4} title={t('visualIdentity')} wide>
+        {cp?.visualIdentity && (
+          <Reveal>
+            <p className="mb-8 max-w-[72ch] text-base leading-7 text-muted-foreground">{l(cp.visualIdentity)}</p>
+          </Reveal>
+        )}
         <IdentityAssets project={project} />
       </NumberedSection>
       <NumberedSection index={5} title={t('result')} wide>
-        <StoryText>{t('resultCopy')}</StoryText>
+        <StoryText>{cp?.result ? l(cp.result) : t('resultCopy')}</StoryText>
         <div className="mt-8">
           <GalleryGrid project={project} shots={shots} />
         </div>
