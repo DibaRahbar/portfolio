@@ -1,14 +1,7 @@
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
 import { Reveal } from '@/components/site/Reveal'
 import { useLang } from '@/i18n'
-
-// Placeholder profile links. Replace '#' with real URLs.
-const socials = [
-  { name: 'LinkedIn', href: '#' },
-  { name: 'Dribbble', href: '#' },
-  { name: 'Behance', href: '#' },
-  { name: 'Instagram', href: '#' },
-]
+import { contactLinks, isExternal } from '@/lib/contact'
 
 const link = 'text-sm text-foreground/70 transition-colors hover:text-brand'
 
@@ -59,9 +52,15 @@ export function Footer() {
               ))}
             </nav>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              {socials.map(social => (
-                <a key={social.name} href={social.href} lang="en" className={link}>
-                  {social.name}
+              {contactLinks.map(contact => (
+                <a
+                  key={contact.id}
+                  href={contact.href}
+                  {...(isExternal(contact.href) ? { target: '_blank', rel: 'noreferrer' } : {})}
+                  lang="en"
+                  className={link}
+                >
+                  {contact.label}
                 </a>
               ))}
             </div>

@@ -59,14 +59,19 @@ const half: Shot = { w: 620, h: 440, span: 'col-span-6 md:col-span-3' }
 /** 3 horizontal (wide) images and 8 regular ones: 11 in total. */
 export const mixed11: Shot[] = [wide, half, half, half, half, wide, half, half, half, half, wide]
 
-/** Default gallery per category: wide screens for UI/UX, a mix for brand, portrait posts for social. */
-export const galleries: Record<Project['category'], Shot[]> = {
-  uiux: [
-    { w: 1264, h: 720, span: 'col-span-6' },
-    { w: 620, h: 420, span: 'col-span-6 md:col-span-3' },
-    { w: 620, h: 420, span: 'col-span-6 md:col-span-3' },
-    { w: 1264, h: 720, span: 'col-span-6' },
-  ],
+const tall3: Shot = { w: 400, h: 500, span: 'col-span-6 sm:col-span-2' }
+const tall2: Shot = { w: 620, h: 775, span: 'col-span-6 sm:col-span-3' }
+
+/** 5 vertical and 4 horizontal photos: 9 in total. */
+export const v5h4: Shot[] = [wide, tall3, tall3, tall3, wide, tall2, tall2, wide, wide]
+
+/** 11 horizontal images, one per row. */
+export const horizontal11: Shot[] = Array.from({ length: 11 }, () => wide)
+
+export const layouts = { mixed11, v5h4, horizontal11 }
+
+/** Default gallery per category: a mix for brand, portrait posts for social. UI/UX pages have no gallery. */
+export const galleries: Record<Exclude<Project['category'], 'uiux'>, Shot[]> = {
   brand: [
     { w: 620, h: 620, span: 'col-span-6 md:col-span-3' },
     { w: 620, h: 620, span: 'col-span-6 md:col-span-3' },

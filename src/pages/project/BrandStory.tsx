@@ -3,7 +3,7 @@ import { useLang } from '@/i18n'
 import { placeholderImage } from '@/lib/placeholder'
 import { useThemeMode } from '@/theme-mode'
 import { Reveal } from '@/components/site/Reveal'
-import { GalleryGrid, GroupLabel, NumberedSection, StoryText, galleries, mixed11, mono } from '@/pages/project/shared'
+import { GalleryGrid, GroupLabel, NumberedSection, StoryText, galleries, layouts, mono } from '@/pages/project/shared'
 
 /** Gray tiles standing in for artwork until real images are added. */
 function Tiles({
@@ -58,24 +58,6 @@ function Palette({ project }: { project: Project }) {
   )
 }
 
-/** One font specimen card. */
-function FontSpecimen() {
-  const { t } = useLang()
-  return (
-    <Reveal>
-      <div className="rounded-2xl border bg-card/80 p-6 backdrop-blur sm:p-10">
-        <p className="text-7xl leading-none font-black tracking-tight sm:text-9xl" lang="en" dir="ltr">
-          Aa
-        </p>
-        <p className="mt-6 text-lg font-semibold">{t('fontName')}</p>
-        <p className={`${mono} mt-2 break-all text-muted-foreground`} lang="en" dir="ltr">
-          ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789
-        </p>
-      </div>
-    </Reveal>
-  )
-}
-
 /** Palette, logos, fonts, illustrations and stickers. Logos and fonts are stacked vertically, one per row. */
 function IdentityAssets({ project }: { project: Project }) {
   const { t } = useLang()
@@ -98,11 +80,7 @@ function IdentityAssets({ project }: { project: Project }) {
       {!!identity.fonts && (
         <div className="space-y-4">
           <GroupLabel>{t('fonts')}</GroupLabel>
-          <div className="grid grid-cols-1 gap-4">
-            {Array.from({ length: identity.fonts }, (_, i) => (
-              <FontSpecimen key={i} />
-            ))}
-          </div>
+          <Tiles count={identity.fonts} label={t('fonts')} w={1264} h={520} className="grid grid-cols-1 gap-4" />
         </div>
       )}
 
@@ -112,9 +90,9 @@ function IdentityAssets({ project }: { project: Project }) {
           <Tiles
             count={identity.illustrations}
             label={t('illustration')}
-            w={620}
-            h={620}
-            className="grid grid-cols-2 gap-4 md:grid-cols-4"
+            w={identity.illustrations === 1 ? 1264 : 620}
+            h={identity.illustrations === 1 ? 560 : 620}
+            className={identity.illustrations === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 md:grid-cols-4'}
           />
         </div>
       )}
@@ -125,9 +103,9 @@ function IdentityAssets({ project }: { project: Project }) {
           <Tiles
             count={identity.stickers}
             label={t('sticker')}
-            w={400}
-            h={400}
-            className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"
+            w={identity.stickers === 1 ? 1264 : 400}
+            h={identity.stickers === 1 ? 560 : 400}
+            className={identity.stickers === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6'}
           />
         </div>
       )}
@@ -138,7 +116,7 @@ function IdentityAssets({ project }: { project: Project }) {
 /** Brand case study: Brief, Approach, Positioning, Visual identity, Result (with the final designs). */
 export function BrandStory({ project }: { project: Project }) {
   const { t } = useLang()
-  const shots = project.galleryLayout === 'mixed11' ? mixed11 : galleries.brand
+  const shots = project.galleryLayout ? layouts[project.galleryLayout] : galleries.brand
   return (
     <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">
       <NumberedSection index={1} title={t('brief')}>

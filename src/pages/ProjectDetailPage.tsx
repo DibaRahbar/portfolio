@@ -1,8 +1,7 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import CountUp from '@/components/CountUp'
-import SpotlightCard from '@/components/SpotlightCard'
 import { Reveal } from '@/components/site/Reveal'
 import { Shell } from '@/components/site/Shell'
 import { Badge } from '@/components/ui/badge'
@@ -13,7 +12,6 @@ import { placeholderImage } from '@/lib/placeholder'
 import { BrandStory } from '@/pages/project/BrandStory'
 import { GalleryGrid, NumberedSection, StoryText, galleries, mono } from '@/pages/project/shared'
 import { VideoSection, WebsiteLink } from '@/pages/project/UiuxExtras'
-import { colors, darkColors } from '@/theme'
 import { useThemeMode } from '@/theme-mode'
 import { ProjectsPage } from '@/pages/ProjectsPage'
 
@@ -98,43 +96,9 @@ function Gallery({ project }: { project: Project }) {
     <section className="mt-16 sm:mt-24">
       <h2 className={`${mono} text-brand-soft`}>{t('gallery')}</h2>
       <div className="mt-4">
-        <GalleryGrid project={project} shots={galleries[project.category]} />
+        <GalleryGrid project={project} shots={galleries.social} />
       </div>
     </section>
-  )
-}
-
-function NextProject({ project }: { project: Project }) {
-  const { t, l } = useLang()
-  const { isDark } = useThemeMode()
-  const next = projects[(projects.indexOf(project) + 1) % projects.length]
-  return (
-    <Reveal className="mt-20 sm:mt-28">
-      <a href={`#/projects/${next.slug}`} className="group block rounded-3xl outline-none focus-visible:ring-2 focus-visible:ring-brand">
-        <SpotlightCard
-          theme={isDark ? 'dark' : 'light'}
-          spotlightColor={isDark ? darkColors.spotlight : colors.tertiary}
-          intensity={0.45}
-          borderGlow={1}
-          spotlightSize={420}
-          className="p-6! sm:p-12!"
-        >
-          <div className="flex items-center justify-between gap-4 sm:gap-8">
-            <div>
-              <p className={`${mono} text-brand-soft`}>
-                {t('nextProject')} · {t(categoryLabel[next.category])}
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight transition-colors group-hover:text-brand sm:text-6xl">
-                {l(next.title)}
-              </h2>
-            </div>
-            <span className="grid size-12 shrink-0 place-items-center rounded-full sm:size-16 bg-primary text-primary-foreground transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
-              <ArrowRight className="size-6 rtl:-scale-x-100" />
-            </span>
-          </div>
-        </SpotlightCard>
-      </a>
-    </Reveal>
   )
 }
 
@@ -178,7 +142,9 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
         <MetaCard project={project} />
       </Reveal>
 
-      <HeroImage src={placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)} alt={`${title} ${t('hero')}`} />
+      {project.category !== 'uiux' && (
+        <HeroImage src={placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)} alt={`${title} ${t('hero')}`} />
+      )}
       <Results project={project} />
       {project.category === 'brand' ? (
         <BrandStory project={project} />
@@ -186,10 +152,9 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
         <>
           {project.category === 'uiux' && <VideoSection project={project} />}
           <Story project={project} />
-          <Gallery project={project} />
+          {project.category !== 'uiux' && <Gallery project={project} />}
         </>
       )}
-      <NextProject project={project} />
     </Shell>
   )
 }

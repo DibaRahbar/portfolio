@@ -85,7 +85,9 @@ function HeroSection() {
           </motion.h1>
 
           <motion.p variants={fadeItem} className="mt-6 flex items-baseline gap-2 sm:mt-8 sm:gap-3">
-            <span className="text-lg italic sm:text-2xl rtl:not-italic">{t('heroBasedIn')}</span>
+            <span className="-rotate-3 font-hand text-3xl leading-none font-semibold sm:text-5xl rtl:rotate-0 rtl:font-sans rtl:text-xl rtl:font-medium sm:rtl:text-3xl">
+              {t('heroBasedIn')}
+            </span>
             <span className="text-3xl font-black tracking-tight text-brand sm:text-5xl">{t('heroCity')}</span>
           </motion.p>
 

@@ -47,8 +47,11 @@ export type Project = {
   results?: Result[]
   /** Brand projects: palette, logos, fonts, illustrations, stickers. */
   identity?: BrandIdentity
-  /** 'mixed11': 3 wide images plus 8 regular ones (11 slots). Default layouts apply otherwise. */
-  galleryLayout?: 'mixed11'
+  /**
+   * Result gallery layout. 'mixed11': 3 wide + 8 regular. 'v5h4': 5 vertical + 4 horizontal.
+   * 'horizontal11': 11 horizontal. Brand projects without one use a default mix.
+   */
+  galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11'
   /** UI/UX projects: live website. Leave out until known; the page shows "coming soon". */
   url?: string
   /** UI/UX projects: showcase video file in public/videos (e.g. 'videos/academic-hu.mp4') or a full https URL to a video file. */
@@ -74,7 +77,6 @@ const tag = {
   ads: { en: 'Ads', fa: 'تبلیغات' },
   website: { en: 'Website', fa: 'وب‌سایت' },
   app: { en: 'App', fa: 'اپلیکیشن' },
-  portfolio: { en: 'Portfolio', fa: 'پورتفولیو' },
 }
 
 const plain = (s: string): Localized => ({ en: s, fa: s })
@@ -150,8 +152,8 @@ export const projects: Project[] = [
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
-    identity: { palette: swatches(5), logos: 3, illustrations: 4 },
-    galleryLayout: 'mixed11',
+    identity: { palette: swatches(5), logos: 3, illustrations: 1 },
+    galleryLayout: 'v5h4',
   },
   {
     slug: 'coralia',
@@ -164,7 +166,7 @@ export const projects: Project[] = [
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
-    identity: { palette: swatches(5), logos: 4, fonts: 1, stickers: 6 },
+    identity: { palette: swatches(5), logos: 4, fonts: 2, stickers: 1 },
     galleryLayout: 'mixed11',
   },
   {
@@ -178,7 +180,8 @@ export const projects: Project[] = [
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
-    identity: { palette: swatches(5) },
+    identity: { palette: swatches(4), logos: 3 },
+    galleryLayout: 'horizontal11',
   },
   {
     slug: 'academic-hu',
@@ -186,8 +189,8 @@ export const projects: Project[] = [
     title: { en: 'Academic Hu Portfolio – Website & App', fa: 'پورتفولیوی Academic Hu – وب‌سایت و اپلیکیشن' },
     client: { en: 'Academic Hu', fa: 'Academic Hu' },
     description: {
-      en: 'UI/UX design for the Academic Hu portfolio website and app.',
-      fa: 'طراحی رابط و تجربه کاربری وب‌سایت و اپلیکیشن پورتفولیوی Academic Hu.',
+      en: 'Website and app design for the Academic Hu portfolio.',
+      fa: 'طراحی وب‌سایت و اپلیکیشن پورتفولیوی Academic Hu.',
     },
     tags: [tag.website, tag.app],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
@@ -197,10 +200,10 @@ export const projects: Project[] = [
     category: 'uiux',
     title: { en: 'Photography Portfolio', fa: 'پورتفولیوی عکاسی' },
     description: {
-      en: 'UI/UX design for a photography portfolio.',
-      fa: 'طراحی رابط و تجربه کاربری یک پورتفولیوی عکاسی.',
+      en: 'Website and app design for a photography portfolio.',
+      fa: 'طراحی وب‌سایت و اپلیکیشن یک پورتفولیوی عکاسی.',
     },
-    tags: [tag.portfolio],
+    tags: [tag.website, tag.app],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
   },
 
