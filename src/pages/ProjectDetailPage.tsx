@@ -10,11 +10,12 @@ import { projects, type Project } from '@/data'
 import { useLang, type MessageKey } from '@/i18n'
 import { categoryLabel } from '@/lib/category'
 import { placeholderImage } from '@/lib/placeholder'
+import { BrandStory } from '@/pages/project/BrandStory'
+import { GalleryGrid, NumberedSection, StoryText, galleries, mono } from '@/pages/project/shared'
+import { VideoSection, WebsiteLink } from '@/pages/project/UiuxExtras'
 import { colors, darkColors } from '@/theme'
 import { useThemeMode } from '@/theme-mode'
 import { ProjectsPage } from '@/pages/ProjectsPage'
-
-const mono = 'font-mono text-[11px] tracking-[0.06em] uppercase'
 
 /** Hero image that settles from a slight zoom as it scrolls through the viewport. */
 function HeroImage({ src, alt }: { src: string; alt: string }) {
@@ -73,7 +74,7 @@ function Results({ project }: { project: Project }) {
 }
 
 function Story({ project }: { project: Project }) {
-  const { t, l, n } = useLang()
+  const { t, l } = useLang()
   const sections: { key: MessageKey; body: string }[] = [
     { key: 'overview', body: `${l(project.description)} ${t('caseStudyCopy')}` },
     { key: 'challenge', body: t('challengeCopy') },
@@ -83,60 +84,21 @@ function Story({ project }: { project: Project }) {
   return (
     <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">
       {sections.map((section, i) => (
-        <Reveal key={section.key} className="grid gap-4 border-t pt-10 lg:grid-cols-[300px_1fr] lg:gap-16">
-          <div>
-            <p className={`${mono} text-brand-soft`}>{n(i + 1, 2)}</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight">{t(section.key)}</h2>
-          </div>
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{section.body}</p>
-        </Reveal>
+        <NumberedSection key={section.key} index={i + 1} title={t(section.key)}>
+          <StoryText>{section.body}</StoryText>
+        </NumberedSection>
       ))}
     </section>
   )
 }
 
-type Shot = { w: number; h: number; span: string }
-
-// Gallery layout per category: wide screens for UI/UX, a mix for brand, portrait posts for social.
-const galleries: Record<Project['category'], Shot[]> = {
-  uiux: [
-    { w: 1264, h: 720, span: 'col-span-6' },
-    { w: 620, h: 420, span: 'col-span-6 md:col-span-3' },
-    { w: 620, h: 420, span: 'col-span-6 md:col-span-3' },
-    { w: 1264, h: 720, span: 'col-span-6' },
-  ],
-  brand: [
-    { w: 620, h: 620, span: 'col-span-6 md:col-span-3' },
-    { w: 620, h: 620, span: 'col-span-6 md:col-span-3' },
-    { w: 1264, h: 560, span: 'col-span-6' },
-    { w: 400, h: 400, span: 'col-span-6 sm:col-span-2' },
-    { w: 400, h: 400, span: 'col-span-6 sm:col-span-2' },
-    { w: 400, h: 400, span: 'col-span-6 sm:col-span-2' },
-  ],
-  social: Array.from({ length: 6 }, () => ({ w: 480, h: 600, span: 'col-span-3 md:col-span-2' })),
-}
-
 function Gallery({ project }: { project: Project }) {
-  const { t, l, n } = useLang()
-  const { isDark } = useThemeMode()
-  const title = l(project.title)
+  const { t } = useLang()
   return (
     <section className="mt-16 sm:mt-24">
       <h2 className={`${mono} text-brand-soft`}>{t('gallery')}</h2>
-      <div className="mt-4 grid grid-cols-6 gap-4">
-        {galleries[project.category].map((shot, i) => {
-          const label = `${t('image')} ${n(i + 1)}`
-          return (
-            <Reveal key={i} className={shot.span}>
-              <img
-                src={placeholderImage(label, shot.w, shot.h, isDark)}
-                alt={`${title} — ${label}`}
-                style={{ aspectRatio: `${shot.w} / ${shot.h}` }}
-                className="w-full rounded-2xl object-cover"
-              />
-            </Reveal>
-          )
-        })}
+      <div className="mt-4">
+        <GalleryGrid project={project} shots={galleries[project.category]} />
       </div>
     </section>
   )
@@ -211,14 +173,22 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
               </Badge>
             ))}
           </div>
+          {project.category === 'uiux' && <WebsiteLink project={project} />}
         </div>
         <MetaCard project={project} />
       </Reveal>
 
       <HeroImage src={placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)} alt={`${title} ${t('hero')}`} />
       <Results project={project} />
-      <Story project={project} />
-      <Gallery project={project} />
+      {project.category === 'brand' ? (
+        <BrandStory project={project} />
+      ) : (
+        <>
+          {project.category === 'uiux' && <VideoSection project={project} />}
+          <Story project={project} />
+          <Gallery project={project} />
+        </>
+      )}
       <NextProject project={project} />
     </Shell>
   )

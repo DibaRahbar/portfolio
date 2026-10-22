@@ -19,6 +19,18 @@ export type Result = {
   label: Localized
 }
 
+/** One color in a brand palette. Leave `hex` out until the real color is known. */
+export type Swatch = { name: Localized; hex?: string }
+
+/** Brand assets shown in the Visual identity section. Counts are placeholder slots until images are added. */
+export type BrandIdentity = {
+  palette: Swatch[]
+  logos?: number
+  fonts?: number
+  illustrations?: number
+  stickers?: number
+}
+
 // Fields marked optional are simply not shown when missing, so a real project never needs made-up details.
 export type Project = {
   slug: string
@@ -33,6 +45,14 @@ export type Project = {
   duration?: Localized
   role: Localized
   results?: Result[]
+  /** Brand projects: palette, logos, fonts, illustrations, stickers. */
+  identity?: BrandIdentity
+  /** 'mixed11': 3 wide images plus 8 regular ones (11 slots). Default layouts apply otherwise. */
+  galleryLayout?: 'mixed11'
+  /** UI/UX projects: live website. Leave out until known; the page shows "coming soon". */
+  url?: string
+  /** UI/UX projects: showcase video file in public/videos (e.g. 'videos/academic-hu.mp4') or a full https URL to a video file. */
+  video?: string
 }
 
 const tag = {
@@ -58,6 +78,10 @@ const tag = {
 }
 
 const plain = (s: string): Localized => ({ en: s, fa: s })
+const persianDigit = (n: number) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[Number(d)])
+/** Empty palette slots (no hex yet), shown as gray swatches until the real colors are added. */
+const swatches = (count: number): Swatch[] =>
+  Array.from({ length: count }, (_, i) => ({ name: { en: `Color ${i + 1}`, fa: `رنگ ${persianDigit(i + 1)}` } }))
 const percent: Localized = { en: '%', fa: '٪' }
 const times: Localized = { en: 'x', fa: 'x' }
 const none = plain('')
@@ -126,6 +150,8 @@ export const projects: Project[] = [
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
+    identity: { palette: swatches(5), logos: 3, illustrations: 4 },
+    galleryLayout: 'mixed11',
   },
   {
     slug: 'coralia',
@@ -138,6 +164,8 @@ export const projects: Project[] = [
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
+    identity: { palette: swatches(5), logos: 4, fonts: 1, stickers: 6 },
+    galleryLayout: 'mixed11',
   },
   {
     slug: 'mars',
@@ -150,6 +178,7 @@ export const projects: Project[] = [
     },
     tags: [tag.identity],
     role: { en: 'Brand designer', fa: 'طراح برند' },
+    identity: { palette: swatches(5) },
   },
   {
     slug: 'academic-hu',

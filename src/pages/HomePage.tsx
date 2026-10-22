@@ -62,7 +62,7 @@ function HeroSection() {
   const [startDelay] = useState(() => (introPending() ? 2.5 : 0.1))
 
   return (
-    <section ref={ref} className="flex w-full items-center py-10 lg:min-h-[calc(100svh-5rem)] lg:py-0">
+    <section ref={ref} className="flex w-full items-center pt-4 pb-10 lg:min-h-[calc(100svh-5rem)] lg:pt-0 lg:pb-28">
       <motion.div
         style={reduce ? undefined : { opacity, y, scale }}
         className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 text-center lg:px-20"
@@ -74,7 +74,7 @@ function HeroSection() {
           className="flex w-full flex-col items-center"
         >
           <motion.p variants={fadeItem} className="text-lg font-normal sm:text-xl">
-            {t('heroGreeting')}
+            {t('heroHi')} <span className="text-brand">{t('name')}</span> {t('heroHiEnd')}
           </motion.p>
 
           <motion.h1
@@ -91,14 +91,7 @@ function HeroSection() {
 
           <motion.p
             variants={fadeItem}
-            className="mt-6 max-w-[800px] text-base font-semibold text-[#333] sm:mt-8 sm:text-lg dark:text-[#e4dcef]"
-          >
-            {t('heroFocus')}
-          </motion.p>
-
-          <motion.p
-            variants={fadeItem}
-            className="mt-4 max-w-[800px] text-base leading-7 text-[#555] sm:text-lg sm:leading-8 dark:text-[#b9afc7]"
+            className="mt-6 max-w-[800px] text-lg leading-8 font-normal text-[#555] sm:mt-8 dark:text-[#b9afc7]"
           >
             {t('heroBody')}
           </motion.p>
