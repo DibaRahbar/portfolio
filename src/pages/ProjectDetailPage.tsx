@@ -10,7 +10,7 @@ import { useLang, type MessageKey } from '@/i18n'
 import { categoryLabel } from '@/lib/category'
 import { placeholderImage } from '@/lib/placeholder'
 import { BrandStory } from '@/pages/project/BrandStory'
-import { GalleryGrid, NumberedSection, StoryText, galleries, mono } from '@/pages/project/shared'
+import { GalleryGrid, NumberedSection, StoryText, assetSrc, galleries, mono } from '@/pages/project/shared'
 import { VideoSection, WebsiteLink } from '@/pages/project/UiuxExtras'
 import { useThemeMode } from '@/theme-mode'
 import { ProjectsPage } from '@/pages/ProjectsPage'
@@ -165,7 +165,10 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
       </Reveal>
 
       {project.category !== 'uiux' && (
-        <HeroImage src={placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)} alt={`${title} ${t('hero')}`} />
+        <HeroImage
+          src={project.coverImage ? assetSrc(project.coverImage) : placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)}
+          alt={`${title} ${t('hero')}`}
+        />
       )}
       <Results project={project} />
       {project.category === 'brand' ? (

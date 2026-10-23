@@ -86,6 +86,8 @@ export type Project = {
   year?: number
   place?: Localized
   description: Localized
+  /** Real cover image path inside public/ (e.g. 'Image/3.jpg'). When present, used instead of the placeholder on the project card and (for brand/social) the detail-page hero. */
+  coverImage?: string
   tags: Localized[]
   deliverables?: Localized
   duration?: Localized
@@ -210,6 +212,7 @@ const allProjects: Project[] = [
       en: 'Brand identity for MARS, a modern creative and digital agency built around technology, strategy and bold visual communication.',
       fa: 'هویت بصری برند MARS، یک آژانس خلاقانه و دیجیتال مدرن بنا شده بر پایه‌ی فناوری، استراتژی و ارتباط بصری جسورانه.',
     },
+    coverImage: 'Image/3.jpg',
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
@@ -289,6 +292,7 @@ const allProjects: Project[] = [
       en: 'Brand identity for CORALIA, a modern beach hotel on the Antalya coast with a hand-drawn coral motif and a warm coastal aesthetic.',
       fa: 'هویت بصری برند CORALIA، یک هتل ساحلی مدرن در ساحل آنتالیا با نقش مرجان دست‌کشیده و زیبایی‌شناسی گرم ساحلی.',
     },
+    coverImage: 'Image/5.jpg',
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
@@ -374,6 +378,7 @@ const allProjects: Project[] = [
       en: 'Brand identity for KOOKI, a modern cookie bakery built around simplicity, character and everyday enjoyment.',
       fa: 'هویت بصری برند KOOKI، یک نانوایی کوکی مدرن بنا شده بر پایه‌ی سادگی، شخصیت و لذت روزانه.',
     },
+    coverImage: 'Image/1222.jpg',
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
@@ -470,6 +475,7 @@ const allProjects: Project[] = [
       en: 'Website and app design for a photography portfolio.',
       fa: 'طراحی وب‌سایت و اپلیکیشن یک پورتفولیوی عکاسی.',
     },
+    coverImage: 'Image/MacBook.jpg',
     tags: [tag.uiDesign, tag.uxDesign, tag.portfolioDesign],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
     appTool: { en: 'Figma', fa: 'فیگما' },
