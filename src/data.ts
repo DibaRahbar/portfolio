@@ -412,7 +412,6 @@ const allProjects: Project[] = [
       'Image/1111.png',
       'Image/122.png',
     ],
-    resultImageFocus: { 1: 'top' },
     visualIdentitySplit: true,
     copy: {
       intro: {
