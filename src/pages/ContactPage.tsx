@@ -20,9 +20,9 @@ export function ContactPage() {
     <Shell>
       <section className="mt-12 sm:mt-14">
         <SectionHeading label={t('sayHello')} title={t('contact')} />
-        <p className="mt-6 max-w-xl text-lg text-muted-foreground">{t('contactIntro')}</p>
+        <p className="mt-6 max-w-none text-lg text-muted-foreground sm:whitespace-nowrap">{t('contactIntro')}</p>
 
-        <ul className="mt-10 max-w-3xl border-t">
+        <ul className="mt-10 grid max-w-3xl grid-cols-1 border-t sm:grid-cols-2 sm:gap-x-10">
           {contactLinks.map(link => {
             const Icon = icons[link.id]
             return (
