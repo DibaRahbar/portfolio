@@ -82,25 +82,27 @@ function Story({ project }: { project: Project }) {
 
   sections.push({ key: 'overview', body: cp?.overview ? l(cp.overview) : `${l(project.description)} ${t('caseStudyCopy')}` })
 
-  if (cp?.objectives) {
-    sections.push({ key: 'objectives', body: l(cp.objectives) })
-  } else {
-    sections.push({ key: 'challenge', body: cp?.challenge ? l(cp.challenge) : t('challengeCopy') })
+  if (!project.storyOverviewOnly) {
+    if (cp?.objectives) {
+      sections.push({ key: 'objectives', body: l(cp.objectives) })
+    } else {
+      sections.push({ key: 'challenge', body: cp?.challenge ? l(cp.challenge) : t('challengeCopy') })
+    }
+
+    if (cp?.challenges) sections.push({ key: 'challenges', body: l(cp.challenges) })
+
+    if (cp?.objectives) {
+      // Extended order: solution before process
+      if (cp?.solution) sections.push({ key: 'solution', body: l(cp.solution) })
+      if (cp?.process) sections.push({ key: 'process', body: l(cp.process) })
+    } else {
+      sections.push({ key: 'process', body: cp?.process ? l(cp.process) : t('processCopy') })
+      sections.push({ key: 'solution', body: cp?.solution ? l(cp.solution) : t('solutionCopy') })
+    }
+
+    if (cp?.keyFeatures) sections.push({ key: 'keyFeatures', body: l(cp.keyFeatures) })
+    if (cp?.conclusion) sections.push({ key: 'conclusion', body: l(cp.conclusion) })
   }
-
-  if (cp?.challenges) sections.push({ key: 'challenges', body: l(cp.challenges) })
-
-  if (cp?.objectives) {
-    // Extended order: solution before process
-    if (cp?.solution) sections.push({ key: 'solution', body: l(cp.solution) })
-    if (cp?.process) sections.push({ key: 'process', body: l(cp.process) })
-  } else {
-    sections.push({ key: 'process', body: cp?.process ? l(cp.process) : t('processCopy') })
-    sections.push({ key: 'solution', body: cp?.solution ? l(cp.solution) : t('solutionCopy') })
-  }
-
-  if (cp?.keyFeatures) sections.push({ key: 'keyFeatures', body: l(cp.keyFeatures) })
-  if (cp?.conclusion) sections.push({ key: 'conclusion', body: l(cp.conclusion) })
 
   return (
     <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">

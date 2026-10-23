@@ -70,6 +70,8 @@ export type Project = {
   role: Localized
   /** Tool used for the project, shown right under Role (e.g. "Figma"). */
   appTool?: Localized
+  /** UI/UX projects: when true, the case study shows only the Overview section. */
+  storyOverviewOnly?: boolean
   results?: Result[]
   /** Brand projects: palette, logos, fonts, illustrations, stickers. */
   identity?: BrandIdentity
@@ -110,6 +112,9 @@ const tag = {
   platform: { en: 'Platform', fa: 'پلتفرم' },
   virtual: { en: 'Virtual', fa: 'مجازی' },
   art: { en: 'Art & Culture', fa: 'هنر و فرهنگ' },
+  uiDesign: { en: 'UI Design', fa: 'طراحی رابط کاربری' },
+  uxDesign: { en: 'UX Design', fa: 'طراحی تجربه کاربری' },
+  dashboardDesign: { en: 'Dashboard Design', fa: 'طراحی داشبورد' },
 }
 
 const plain = (s: string): Localized => ({ en: s, fa: s })
@@ -340,8 +345,9 @@ const allProjects: Project[] = [
       en: 'Design and implementation of a comprehensive, user-friendly website for a university professor to serve as a bridge between the professor, students, and the scientific community. This project was carried out with the goal of integrating three core functions into a single platform: delivering course materials, sharing research publications, and facilitating communication with students.',
       fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پروژه با هدف یکپارچه‌سازی سه عملکرد اصلی در یک پلتفرم انجام شد: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
     },
-    tags: [tag.website, tag.app, tag.dashboard],
+    tags: [tag.uiDesign, tag.uxDesign, tag.dashboardDesign],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
+    storyOverviewOnly: true,
   },
   {
     slug: 'photography-portfolio',
