@@ -136,7 +136,7 @@ export function GalleryGrid({ project, shots }: { project: Project; shots: Shot[
             <img
               src={images ? assetSrc(images[i]) : placeholderImage(label, shot.w, shot.h, isDark)}
               alt={`${title} — ${label}`}
-              style={{ aspectRatio: `${shot.w} / ${shot.h}` }}
+              style={{ aspectRatio: `${shot.w} / ${shot.h}`, objectPosition: project.resultImageFocus?.[i] ?? 'center' }}
               className="w-full rounded-2xl object-cover"
             />
           </Reveal>

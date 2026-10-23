@@ -115,6 +115,8 @@ export type Project = {
   galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11' | 'pair10' | 'vertical8'
   /** Real result-gallery image paths inside public/ (e.g. 'Image/3.jpg'). When present, used instead of placeholder tiles, matched in order to the gallery layout's shots. */
   resultImages?: string[]
+  /** CSS object-position per resultImages index (e.g. {1: 'top'} shifts image 2's crop upward). Defaults to 'center'. */
+  resultImageFocus?: Record<number, string>
   /** UI/UX projects: live website. Leave out until known; the page shows "coming soon". */
   url?: string
   /** UI/UX projects: showcase video file in public/videos (e.g. 'videos/academic-hu.mp4') or a full https URL to a video file. */
@@ -306,7 +308,7 @@ const allProjects: Project[] = [
       ],
       logos: 4,
       logosLayout: 'row',
-      logoImages: ['Image/L2.jpg', 'Image/L22.jpg', 'Image/L222.jpg', 'Image/L2222.jpg'],
+      logoImages: ['Image/L2.jpg', 'Image/L22.jpg', 'Image/cooo.jpg', 'Image/L2222.jpg'],
       logoImageSize: { w: 732, h: 729 },
       fonts: 1,
       fontImages: ['Image/FO.jpg'],
@@ -410,6 +412,7 @@ const allProjects: Project[] = [
       'Image/1111.png',
       'Image/122.png',
     ],
+    resultImageFocus: { 1: 'top' },
     visualIdentitySplit: true,
     copy: {
       intro: {
