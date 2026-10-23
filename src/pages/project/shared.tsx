@@ -96,8 +96,8 @@ export const v5h4: Shot[] = [wide, tall3, tall3, tall3, wide, tall2, tall2, wide
 /** 11 horizontal images, one per row. */
 export const horizontal11: Shot[] = Array.from({ length: 11 }, () => wide)
 
-/** 8 horizontal images, plus a final pair of rectangles side by side: 10 in total. */
-export const pair10: Shot[] = [...Array.from({ length: 8 }, () => wide), half, half]
+/** 10 rectangles, two side by side per row: 5 rows of 2. */
+export const pair10: Shot[] = Array.from({ length: 10 }, () => half)
 
 export const layouts = { mixed11, v5h4, horizontal11, pair10 }
 

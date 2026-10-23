@@ -30,6 +30,8 @@ export type BrandIdentity = {
   /** 'row': logos shown side by side as squares. Default ('stack'): one per row. */
   logosLayout?: 'stack' | 'row'
   fonts?: number
+  /** 'row': fonts shown two side by side as rectangles. Default ('stack'): one per row. */
+  fontsLayout?: 'stack' | 'row'
   illustrations?: number
   stickers?: number
 }
@@ -198,7 +200,7 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(4), logos: 3, logosLayout: 'row' },
+    identity: { palette: swatches(4), logos: 3, logosLayout: 'row', fonts: 2, fontsLayout: 'row' },
     galleryLayout: 'pair10',
     mergeIdentityIntoPositioning: true,
     copy: {
