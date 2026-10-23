@@ -115,6 +115,7 @@ const tag = {
   uiDesign: { en: 'UI Design', fa: 'طراحی رابط کاربری' },
   uxDesign: { en: 'UX Design', fa: 'طراحی تجربه کاربری' },
   dashboardDesign: { en: 'Dashboard Design', fa: 'طراحی داشبورد' },
+  portfolioDesign: { en: 'Portfolio Design', fa: 'طراحی پورتفولیو' },
 }
 
 const plain = (s: string): Localized => ({ en: s, fa: s })
@@ -359,7 +360,7 @@ const allProjects: Project[] = [
       en: 'Website and app design for a photography portfolio.',
       fa: 'طراحی وب‌سایت و اپلیکیشن یک پورتفولیوی عکاسی.',
     },
-    tags: [tag.website, tag.app],
+    tags: [tag.uiDesign, tag.uxDesign, tag.portfolioDesign],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
     appTool: { en: 'Figma', fa: 'فیگما' },
     url: 'https://www.nimaserajian.com',
