@@ -50,7 +50,6 @@ export function ProjectCard({ project }: { project: Project }) {
               </Badge>
             ))}
           </div>
-          <p className="mt-4 text-[13px] font-medium">{l(project.role)}</p>
         </div>
       </SpotlightCard>
     </a>
