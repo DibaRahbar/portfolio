@@ -523,6 +523,21 @@ const allProjects: Project[] = [
       },
     },
   },
+  {
+    slug: 'mars-agency-uiux',
+    category: 'uiux',
+    title: { en: 'Mars Agency', fa: 'مارس آژانس' },
+    client: { en: 'Mars Agency', fa: 'مارس آژانس' },
+    description: {
+      en: 'UI/UX design for Mars Agency — coming soon.',
+      fa: 'طراحی UI/UX برای مارس آژانس — به‌زودی.',
+    },
+    tags: [tag.uiDesign, tag.uxDesign],
+    role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
+    appTool: { en: 'Figma', fa: 'فیگما' },
+    deliverables: { en: 'Soon', fa: 'به‌زودی' },
+    hideStory: true,
+  },
 
   // Placeholder works (invented details). Replace or remove before sharing the site.
   {
