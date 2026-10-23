@@ -75,6 +75,48 @@ function IdentityAssets({ project }: { project: Project }) {
   const { t } = useLang()
   const identity = project.identity
   if (!identity) return null
+
+  const fontBlock = !!identity.fonts && (
+    <div className="space-y-4">
+      <GroupLabel>{t('fonts')}</GroupLabel>
+      {identity.fontsLayout === 'row' ? (
+        <Tiles
+          count={identity.fonts}
+          images={identity.fontImages}
+          label={t('fonts')}
+          w={identity.fontImageSize?.w ?? 620}
+          h={identity.fontImageSize?.h ?? 440}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+        />
+      ) : (
+        <Tiles
+          count={identity.fonts}
+          images={identity.fontImages}
+          label={t('fonts')}
+          w={identity.fontImageSize?.w ?? 1264}
+          h={identity.fontImageSize?.h ?? 520}
+          className="grid grid-cols-1 gap-4"
+        />
+      )}
+    </div>
+  )
+
+  const stickerBlock = !!identity.stickers && (
+    <div className="space-y-4">
+      <GroupLabel>{t('stickers')}</GroupLabel>
+      <Tiles
+        count={identity.stickers}
+        images={identity.stickerImages}
+        label={t('sticker')}
+        w={identity.stickerImageSize?.w ?? (identity.stickers === 1 ? 1264 : 400)}
+        h={identity.stickerImageSize?.h ?? (identity.stickers === 1 ? 560 : 400)}
+        className={identity.stickers === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6'}
+      />
+    </div>
+  )
+
+  const fontStickerSideBySide = identity.fontStickerSideBySide && !!identity.fonts && !!identity.stickers
+
   return (
     <div className="space-y-12">
       <div className="space-y-4">
@@ -107,56 +149,28 @@ function IdentityAssets({ project }: { project: Project }) {
         </div>
       )}
 
-      {!!identity.fonts && (
-        <div className="space-y-4">
-          <GroupLabel>{t('fonts')}</GroupLabel>
-          {identity.fontsLayout === 'row' ? (
-            <Tiles
-              count={identity.fonts}
-              images={identity.fontImages}
-              label={t('fonts')}
-              w={identity.fontImageSize?.w ?? 620}
-              h={identity.fontImageSize?.h ?? 440}
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-            />
-          ) : (
-            <Tiles
-              count={identity.fonts}
-              images={identity.fontImages}
-              label={t('fonts')}
-              w={identity.fontImageSize?.w ?? 1264}
-              h={identity.fontImageSize?.h ?? 520}
-              className="grid grid-cols-1 gap-4"
-            />
+      {fontStickerSideBySide ? (
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {fontBlock}
+          {stickerBlock}
+        </div>
+      ) : (
+        <>
+          {fontBlock}
+          {!!identity.illustrations && (
+            <div className="space-y-4">
+              <GroupLabel>{t('illustrations')}</GroupLabel>
+              <Tiles
+                count={identity.illustrations}
+                label={t('illustration')}
+                w={identity.illustrations === 1 ? 1264 : 620}
+                h={identity.illustrations === 1 ? 560 : 620}
+                className={identity.illustrations === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 md:grid-cols-4'}
+              />
+            </div>
           )}
-        </div>
-      )}
-
-      {!!identity.illustrations && (
-        <div className="space-y-4">
-          <GroupLabel>{t('illustrations')}</GroupLabel>
-          <Tiles
-            count={identity.illustrations}
-            label={t('illustration')}
-            w={identity.illustrations === 1 ? 1264 : 620}
-            h={identity.illustrations === 1 ? 560 : 620}
-            className={identity.illustrations === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 md:grid-cols-4'}
-          />
-        </div>
-      )}
-
-      {!!identity.stickers && (
-        <div className="space-y-4">
-          <GroupLabel>{t('stickers')}</GroupLabel>
-          <Tiles
-            count={identity.stickers}
-            images={identity.stickerImages}
-            label={t('sticker')}
-            w={identity.stickerImageSize?.w ?? (identity.stickers === 1 ? 1264 : 400)}
-            h={identity.stickerImageSize?.h ?? (identity.stickers === 1 ? 560 : 400)}
-            className={identity.stickers === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6'}
-          />
-        </div>
+          {stickerBlock}
+        </>
       )}
     </div>
   )

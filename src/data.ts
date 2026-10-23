@@ -46,6 +46,8 @@ export type BrandIdentity = {
   stickerImages?: string[]
   /** Pixel size of stickerImages, for correct aspect ratio. */
   stickerImageSize?: { w: number; h: number }
+  /** When true, the Fonts and Stickers groups render side by side instead of stacked. */
+  fontStickerSideBySide?: boolean
 }
 
 /** Per-project copy for UI/UX case study sections. When present, overrides the generic placeholder text. */
@@ -298,7 +300,6 @@ const allProjects: Project[] = [
         { name: { en: 'Ocean Aqua', fa: 'فیروزه‌ای اقیانوس' }, hex: '#A0CEE6' },
         { name: { en: 'Deep Navy', fa: 'سرمه‌ای تیره' }, hex: '#0B4F6C' },
         { name: { en: 'Warm Sand', fa: 'شنی گرم' }, hex: '#D8C2A3' },
-        { name: { en: 'Color 6', fa: 'رنگ ۶' } },
       ],
       logos: 4,
       logosLayout: 'row',
@@ -310,6 +311,7 @@ const allProjects: Project[] = [
       stickers: 1,
       stickerImages: ['Image/ST1.jpg'],
       stickerImageSize: { w: 1449, h: 750 },
+      fontStickerSideBySide: true,
     },
     galleryLayout: 'vertical8',
     resultImages: [
