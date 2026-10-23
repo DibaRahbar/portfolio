@@ -8,11 +8,11 @@ import { mono } from '@/pages/project/shared'
 const videoSrc = (video: string) => (/^https?:\/\//.test(video) ? video : `${import.meta.env.BASE_URL}${video.replace(/^\//, '')}`)
 
 /** "Visit website" button, or a muted "coming soon" label until the project has a URL. */
-export function WebsiteLink({ project }: { project: Project }) {
+export function WebsiteLink({ project, className = 'mt-6' }: { project: Project; className?: string }) {
   const { t } = useLang()
   if (!project.url) {
     return (
-      <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-dashed px-6 py-3 text-sm font-medium text-muted-foreground">
+      <span className={`${className} inline-flex w-fit items-center gap-2 rounded-full border border-dashed px-6 py-3 text-sm font-medium text-muted-foreground`}>
         {t('websiteSoon')}
       </span>
     )
@@ -22,7 +22,7 @@ export function WebsiteLink({ project }: { project: Project }) {
       href={project.url}
       target="_blank"
       rel="noreferrer"
-      className="group mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-brand-soft"
+      className={`group ${className} inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-brand-soft`}
     >
       {t('visitWebsite')}
       <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />

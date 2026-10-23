@@ -68,6 +68,8 @@ export type Project = {
   deliverables?: Localized
   duration?: Localized
   role: Localized
+  /** Tool used for the project, shown right under Role (e.g. "Figma"). */
+  appTool?: Localized
   results?: Result[]
   /** Brand projects: palette, logos, fonts, illustrations, stickers. */
   identity?: BrandIdentity
@@ -362,7 +364,7 @@ const allProjects: Project[] = [
     },
     tags: [tag.platform, tag.art, tag.virtual, tag.ecommerce],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
-    deliverables: { en: 'App design · Figma', fa: 'طراحی اپ · فیگما' },
+    appTool: { en: 'Figma', fa: 'فیگما' },
     uiuxCopy: {
       overview: {
         en: 'This project is a comprehensive online platform that brings together three of Tabriz\'s most prominent art galleries in one place. Art enthusiasts can easily access current and past exhibitions, explore each gallery\'s unique collection, virtual tours that recreate the feeling of being in a physical gallery.\n\nThe site features dedicated profile pages for each gallery showcasing all available works, along with clear contact information such as email, maps, and opening hours. The main goal of the project was to recreate the rich, engaging experience of visiting a gallery — online — allowing art lovers to connect deeply with Tabriz\'s vibrant art scene.',
