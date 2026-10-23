@@ -180,7 +180,7 @@ export function BrandStory({ project }: { project: Project }) {
                 <StoryText>{l(cp.visualIdentity)}</StoryText>
               </Reveal>
             )}
-            <div className="mt-8">
+            <div className={`mt-8 ${project.visualIdentitySplit ? 'lg:col-span-2' : ''}`}>
               <IdentityAssets project={project} />
             </div>
           </NumberedSection>
