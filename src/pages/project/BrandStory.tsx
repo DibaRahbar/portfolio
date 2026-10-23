@@ -174,7 +174,7 @@ export function BrandStory({ project }: { project: Project }) {
           <NumberedSection index={3} title={t('positioning')}>
             <StoryText>{cp?.positioning ? l(cp.positioning) : t('positioningCopy')}</StoryText>
           </NumberedSection>
-          <NumberedSection index={4} title={t('visualIdentity')} wide>
+          <NumberedSection index={4} title={t('visualIdentity')} wide={!project.visualIdentitySplit}>
             {cp?.visualIdentity && (
               <Reveal>
                 <StoryText>{l(cp.visualIdentity)}</StoryText>

@@ -83,6 +83,8 @@ export type Project = {
   copy?: BrandCopy
   /** Brand projects: when true, Visual identity (text + assets) renders inside the Positioning section instead of its own. */
   mergeIdentityIntoPositioning?: boolean
+  /** Brand projects: when true, Visual identity uses the same heading-left/content-right layout as Positioning, instead of the wide layout. */
+  visualIdentitySplit?: boolean
   /** UI/UX projects: real case-study copy. When present, replaces generic placeholders. */
   uiuxCopy?: UiuxCopy
   /**
@@ -198,6 +200,7 @@ const allProjects: Project[] = [
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
     identity: { palette: swatches(4), logos: 3, logosLayout: 'row', fonts: 2, fontsLayout: 'row' },
     galleryLayout: 'pair10',
+    visualIdentitySplit: true,
     copy: {
       intro: {
         en: 'Mars is a modern creative and digital agency built around technology, strategy, and bold visual communication. The project focuses on turning a multidisciplinary service — combining programming, design, and marketing — into a powerful and memorable brand. At the heart of the identity is a custom geometric logo mark inspired by the planet Mars, supported by bold typography, dynamic modular patterns, and a high-contrast palette of deep black and vibrant orange.',
