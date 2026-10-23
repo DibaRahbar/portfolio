@@ -427,7 +427,7 @@ const allProjects: Project[] = [
     title: { en: 'Mars Agency on Instagram', fa: 'اینستاگرام مارس آژانس' },
     client: { en: 'Mars Agency', fa: 'مارس آژانس' },
     year: 2026,
-    place: { en: 'Tehran', fa: 'تهران' },
+    place: { en: 'Tabriz', fa: 'تبریز' },
     description: {
       en: 'Instagram grid system, story templates, and content strategy for Mars Agency — currently in process.',
       fa: 'سیستم گرید اینستاگرام، قالب‌های استوری و استراتژی محتوا برای مارس آژانس — در حال انجام.',
@@ -436,6 +436,7 @@ const allProjects: Project[] = [
     deliverables: { en: 'Soon', fa: 'به‌زودی' },
     duration: { en: 'In process', fa: 'در حال انجام' },
     role: { en: 'Social media designer', fa: 'طراح شبکه‌های اجتماعی' },
+    hideStory: true,
   },
   {
     slug: 'fitlab-campaign',
