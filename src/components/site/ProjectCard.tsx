@@ -43,14 +43,14 @@ export function ProjectCard({ project }: { project: Project }) {
             {title}
           </h3>
           <p className="mt-2 text-[15px] leading-6 text-muted-foreground">{l(project.description)}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap gap-2 border-t pt-4">
             {project.tags.map(tag => (
               <Badge key={tag.en} variant="secondary" className="h-6 px-2.5">
                 {l(tag)}
               </Badge>
             ))}
           </div>
-          <p className="mt-5 border-t pt-4 text-[13px] font-medium">{l(project.role)}</p>
+          <p className="mt-4 text-[13px] font-medium">{l(project.role)}</p>
         </div>
       </SpotlightCard>
     </a>
