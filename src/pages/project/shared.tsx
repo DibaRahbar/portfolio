@@ -99,7 +99,10 @@ export const horizontal11: Shot[] = Array.from({ length: 11 }, () => wide)
 /** 10 rectangles, two side by side per row: 5 rows of 2. */
 export const pair10: Shot[] = Array.from({ length: 10 }, () => half)
 
-export const layouts = { mixed11, v5h4, horizontal11, pair10 }
+/** 8 vertical images, two side by side per row: 4 rows of 2. */
+export const vertical8: Shot[] = Array.from({ length: 8 }, () => tall2)
+
+export const layouts = { mixed11, v5h4, horizontal11, pair10, vertical8 }
 
 /** Default gallery per category: a mix for brand, portrait posts for social. UI/UX pages have no gallery. */
 export const galleries: Record<Exclude<Project['category'], 'uiux'>, Shot[]> = {

@@ -58,6 +58,15 @@ function Palette({ project }: { project: Project }) {
   )
 }
 
+/** Tailwind needs literal class names, so the row column count is mapped rather than interpolated. */
+const rowGridCols: Record<number, string> = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-3',
+  4: 'sm:grid-cols-4',
+  5: 'sm:grid-cols-5',
+  6: 'sm:grid-cols-6',
+}
+
 /** Palette, logos, fonts, illustrations and stickers. Logos and fonts are stacked vertically, one per row. */
 function IdentityAssets({ project }: { project: Project }) {
   const { t } = useLang()
@@ -74,7 +83,13 @@ function IdentityAssets({ project }: { project: Project }) {
         <div className="space-y-4">
           <GroupLabel>{t('logos')}</GroupLabel>
           {identity.logosLayout === 'row' ? (
-            <Tiles count={identity.logos} label={t('logo')} w={400} h={400} className="grid grid-cols-2 gap-4 sm:grid-cols-3" />
+            <Tiles
+              count={identity.logos}
+              label={t('logo')}
+              w={400}
+              h={400}
+              className={`grid grid-cols-2 gap-4 ${rowGridCols[identity.logos] ?? 'sm:grid-cols-3'}`}
+            />
           ) : (
             <Tiles count={identity.logos} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
           )}

@@ -89,10 +89,10 @@ export type Project = {
   uiuxCopy?: UiuxCopy
   /**
    * Result gallery layout. 'mixed11': 3 wide + 8 regular. 'v5h4': 5 vertical + 4 horizontal.
-   * 'horizontal11': 11 horizontal. 'pair10': 8 horizontal + a final pair side by side.
-   * Brand projects without one use a default mix.
+   * 'horizontal11': 11 horizontal. 'pair10': 10 rectangles, 2 side by side per row.
+   * 'vertical8': 8 vertical images, 2 side by side per row. Brand projects without one use a default mix.
    */
-  galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11' | 'pair10'
+  galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11' | 'pair10' | 'vertical8'
   /** UI/UX projects: live website. Leave out until known; the page shows "coming soon". */
   url?: string
   /** UI/UX projects: showcase video file in public/videos (e.g. 'videos/academic-hu.mp4') or a full https URL to a video file. */
@@ -252,8 +252,9 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(5), logos: 4, fonts: 2, stickers: 1 },
-    galleryLayout: 'mixed11',
+    identity: { palette: swatches(5), logos: 4, logosLayout: 'row', fonts: 2, fontsLayout: 'row', stickers: 1 },
+    galleryLayout: 'vertical8',
+    visualIdentitySplit: true,
     copy: {
       intro: {
         en: 'Coralia is a modern beach hotel on the Antalya coast, facing the sea. With a minimal visual identity, it turns a simple seaside stay into a warm, memorable experience. Rather than luxury, the brand offers a friendly, effortless aesthetic rooted in the coast\'s relaxed rhythm. At its heart, the identity tells a story of endless beach days through a hand-drawn coral motif, fluid typography, and a vibrant sea-and-sun palette.',
