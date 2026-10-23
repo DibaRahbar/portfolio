@@ -164,7 +164,7 @@ export function ProjectDetailPage({ slug }: { slug: string }) {
         <MetaCard project={project} />
       </Reveal>
 
-      {project.category !== 'uiux' && (
+      {project.category === 'social' && (
         <HeroImage
           src={project.coverImage ? assetSrc(project.coverImage) : placeholderImage(`${title} ${t('hero')}`, 1264, 600, isDark)}
           alt={`${title} ${t('hero')}`}
