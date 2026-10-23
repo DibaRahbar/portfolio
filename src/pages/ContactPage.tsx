@@ -33,8 +33,8 @@ export function ContactPage() {
                     {...(isExternal(link.href) ? { target: '_blank', rel: 'noreferrer' } : {})}
                     className="group flex items-center gap-4 border-b py-6 outline-none transition-colors hover:text-brand focus-visible:text-brand sm:gap-6"
                   >
-                    <span className="grid size-12 shrink-0 place-items-center rounded-full border bg-background/80 text-brand backdrop-blur transition-colors group-hover:border-brand group-hover:bg-primary group-hover:text-primary-foreground sm:size-14">
-                      <Icon className="size-5 sm:size-6" />
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full border bg-background/80 text-brand backdrop-blur transition-colors group-hover:border-brand group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon className="size-4" />
                     </span>
                     <span className="min-w-0 flex-1 text-xl font-semibold tracking-tight sm:text-2xl">
                       {link.id === 'email' ? t('email') : link.label}
