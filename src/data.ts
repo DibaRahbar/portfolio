@@ -354,12 +354,16 @@ const allProjects: Project[] = [
     slug: 'photography-portfolio',
     category: 'uiux',
     title: { en: 'Photography Portfolio', fa: 'پورتفولیوی عکاسی' },
+    client: { en: 'Photographer', fa: 'عکاس' },
     description: {
       en: 'Website and app design for a photography portfolio.',
       fa: 'طراحی وب‌سایت و اپلیکیشن یک پورتفولیوی عکاسی.',
     },
     tags: [tag.website, tag.app],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
+    appTool: { en: 'Figma', fa: 'فیگما' },
+    url: 'https://www.nimaserajian.com',
+    hideStory: true,
   },
   {
     slug: 'tabriz-art-gallery',
