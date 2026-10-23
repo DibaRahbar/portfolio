@@ -47,16 +47,35 @@ export function NumberedSection({
   )
 }
 
+function BulletList({ text }: { text: string }) {
+  const items = text.split('\n').filter(l => l.startsWith('* ')).map(l => l.slice(2))
+  return (
+    <ul className="space-y-3">
+      {items.map((item, i) => (
+        <li key={i} className="flex gap-3 text-lg leading-8 text-muted-foreground">
+          <span className="mt-3 size-1.5 shrink-0 rounded-full bg-brand" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export function StoryText({ children }: { children: ReactNode }) {
-  if (typeof children === 'string' && children.includes('\n\n')) {
+  if (typeof children !== 'string') {
+    return <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{children}</p>
+  }
+  const isBullet = (s: string) => s.trimStart().startsWith('* ')
+  if (children.includes('\n\n')) {
     return (
       <div className="max-w-2xl space-y-4">
-        {children.split('\n\n').map((para, i) => (
-          <p key={i} className="text-lg leading-8 text-muted-foreground">{para}</p>
-        ))}
+        {children.split('\n\n').map((para, i) =>
+          isBullet(para) ? <BulletList key={i} text={para} /> : <p key={i} className="text-lg leading-8 text-muted-foreground">{para}</p>
+        )}
       </div>
     )
   }
+  if (isBullet(children)) return <BulletList text={children} />
   return <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{children}</p>
 }
 
