@@ -198,7 +198,18 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(4), logos: 3, logosLayout: 'row', fonts: 2, fontsLayout: 'row' },
+    identity: {
+      palette: [
+        { name: { en: 'Vibrant Orange', fa: 'نارنجی زنده' }, hex: '#D8522D' },
+        { name: { en: 'Gold', fa: 'طلایی' }, hex: '#DAAC4F' },
+        { name: { en: 'Black', fa: 'مشکی' }, hex: '#020202' },
+        { name: { en: 'Off-White', fa: 'سفید مایل به خاکستری' }, hex: '#FAFAFA' },
+      ],
+      logos: 3,
+      logosLayout: 'row',
+      fonts: 2,
+      fontsLayout: 'row',
+    },
     galleryLayout: 'pair10',
     visualIdentitySplit: true,
     copy: {
