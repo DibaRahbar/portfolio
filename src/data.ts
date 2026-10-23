@@ -130,7 +130,6 @@ const persianDigit = (n: number) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵�
 /** Empty palette slots (no hex yet), shown as gray swatches until the real colors are added. */
 const swatches = (count: number): Swatch[] =>
   Array.from({ length: count }, (_, i) => ({ name: { en: `Color ${i + 1}`, fa: `رنگ ${persianDigit(i + 1)}` } }))
-const percent: Localized = { en: '%', fa: '٪' }
 const times: Localized = { en: 'x', fa: 'x' }
 const none = plain('')
 
@@ -425,23 +424,18 @@ const allProjects: Project[] = [
   {
     slug: 'bloom-cafe',
     category: 'social',
-    title: { en: 'Bloom Café on Instagram', fa: 'اینستاگرام کافه بلوم' },
-    client: { en: 'Bloom Café', fa: 'کافه بلوم' },
+    title: { en: 'Mars Agency on Instagram', fa: 'اینستاگرام مارس آژانس' },
+    client: { en: 'Mars Agency', fa: 'مارس آژانس' },
     year: 2026,
     place: { en: 'Tehran', fa: 'تهران' },
     description: {
-      en: 'A grid system, story templates, and a launch campaign for a specialty café.',
-      fa: 'سیستم گرید، قالب‌های استوری و کمپین افتتاحیه برای یک کافه‌ی تخصصی.',
+      en: 'Instagram grid system, story templates, and content strategy for Mars Agency — currently in process.',
+      fa: 'سیستم گرید اینستاگرام، قالب‌های استوری و استراتژی محتوا برای مارس آژانس — در حال انجام.',
     },
     tags: [tag.instagram, tag.campaign],
-    deliverables: { en: '60 posts & stories', fa: '۶۰ پست و استوری' },
-    duration: { en: '3 months', fa: '۳ ماه' },
+    deliverables: { en: 'Soon', fa: 'به‌زودی' },
+    duration: { en: 'In process', fa: 'در حال انجام' },
     role: { en: 'Social media designer', fa: 'طراح شبکه‌های اجتماعی' },
-    results: [
-      { value: 12, suffix: { en: 'k', fa: ' هزار' }, label: { en: 'new followers', fa: 'دنبال‌کننده‌ی جدید' } },
-      { value: 4.2, suffix: percent, label: { en: 'engagement rate', fa: 'نرخ تعامل' } },
-      { value: 60, suffix: none, label: { en: 'posts designed', fa: 'پست طراحی‌شده' } },
-    ],
   },
   {
     slug: 'fitlab-campaign',
