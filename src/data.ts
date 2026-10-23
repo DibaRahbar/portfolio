@@ -190,7 +190,7 @@ const allProjects: Project[] = [
   {
     slug: 'mars',
     category: 'brand',
-    title: { en: 'MARS – Agency', fa: 'MARS – آژانس' },
+    title: { en: 'Mars Agency', fa: 'مارس آژانس' },
     client: { en: 'MARS', fa: 'MARS' },
     year: 2026,
     description: {
@@ -244,7 +244,7 @@ const allProjects: Project[] = [
   {
     slug: 'coralia',
     category: 'brand',
-    title: { en: 'CORALIA – Beach Hotel', fa: 'CORALIA – هتل ساحلی' },
+    title: { en: 'Coralia', fa: 'کورالیا' },
     client: { en: 'CORALIA', fa: 'CORALIA' },
     year: 2026,
     description: {
@@ -299,7 +299,7 @@ const allProjects: Project[] = [
   {
     slug: 'kooki',
     category: 'brand',
-    title: { en: 'KOOKI – Cookie Shop', fa: 'KOOKI – فروشگاه کوکی' },
+    title: { en: 'Kooki Shop', fa: 'کوکی شاپ' },
     client: { en: 'KOOKI', fa: 'KOOKI' },
     year: 2026,
     description: {

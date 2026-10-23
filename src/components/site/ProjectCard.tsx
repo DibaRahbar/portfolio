@@ -11,11 +11,6 @@ export function ProjectCard({ project }: { project: Project }) {
   const { t, l, n } = useLang()
   const { isDark } = useThemeMode()
   const title = l(project.title)
-  const meta = [
-    project.deliverables && [t('deliverables'), l(project.deliverables)],
-    project.duration && [t('duration'), l(project.duration)],
-    [t('role'), l(project.role)],
-  ].filter((row): row is string[] => Boolean(row))
   // Year and city, when known.
   const when = [project.year !== undefined && n(project.year), project.place && l(project.place)].filter(Boolean).join(' — ')
 
@@ -55,14 +50,7 @@ export function ProjectCard({ project }: { project: Project }) {
               </Badge>
             ))}
           </div>
-          <dl className="mt-5 flex flex-wrap gap-x-10 gap-y-3 border-t pt-4">
-            {meta.map(([label, value]) => (
-              <div key={label}>
-                <dt className="font-mono text-[11px] tracking-[0.06em] text-muted-foreground uppercase">{label}</dt>
-                <dd className="mt-1 text-[13px] font-medium">{value}</dd>
-              </div>
-            ))}
-          </dl>
+          <p className="mt-5 border-t pt-4 text-[13px] font-medium">{l(project.role)}</p>
         </div>
       </SpotlightCard>
     </a>
