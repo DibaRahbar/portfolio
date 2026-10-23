@@ -120,19 +120,21 @@ export const galleries: Record<Exclude<Project['category'], 'uiux'>, Shot[]> = {
   social: Array.from({ length: 6 }, () => ({ w: 480, h: 600, span: 'col-span-3 md:col-span-2' })),
 }
 
-/** Grid of placeholder images laid out from a list of shots. */
+/** Grid of placeholder images laid out from a list of shots, or real images when the project has `resultImages`. */
 export function GalleryGrid({ project, shots }: { project: Project; shots: Shot[] }) {
   const { t, l, n } = useLang()
   const { isDark } = useThemeMode()
   const title = l(project.title)
+  const images = project.resultImages
+  const rows = images ? shots.slice(0, images.length) : shots
   return (
     <div className="grid grid-cols-6 gap-4">
-      {shots.map((shot, i) => {
+      {rows.map((shot, i) => {
         const label = `${t('image')} ${n(i + 1)}`
         return (
           <Reveal key={i} className={shot.span}>
             <img
-              src={placeholderImage(label, shot.w, shot.h, isDark)}
+              src={images ? assetSrc(images[i]) : placeholderImage(label, shot.w, shot.h, isDark)}
               alt={`${title} — ${label}`}
               style={{ aspectRatio: `${shot.w} / ${shot.h}` }}
               className="w-full rounded-2xl object-cover"

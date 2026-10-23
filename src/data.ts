@@ -97,6 +97,8 @@ export type Project = {
    * 'vertical8': 8 vertical images, 2 side by side per row. Brand projects without one use a default mix.
    */
   galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11' | 'pair10' | 'vertical8'
+  /** Real result-gallery image paths inside public/ (e.g. 'Image/3.jpg'). When present, used instead of placeholder tiles, matched in order to the gallery layout's shots. */
+  resultImages?: string[]
   /** UI/UX projects: live website. Leave out until known; the page shows "coming soon". */
   url?: string
   /** UI/UX projects: showcase video file in public/videos (e.g. 'videos/academic-hu.mp4') or a full https URL to a video file. */
@@ -216,6 +218,17 @@ const allProjects: Project[] = [
       fontImages: ['Image/F3.jpg'],
     },
     galleryLayout: 'pair10',
+    resultImages: [
+      'Image/3.jpg',
+      'Image/33.jpg',
+      'Image/333.jpg',
+      'Image/3333.jpg',
+      'Image/35.jpg',
+      'Image/36.jpg',
+      'Image/37.jpg',
+      'Image/38.jpg',
+      'Image/39.jpg',
+    ],
     visualIdentitySplit: true,
     copy: {
       intro: {
