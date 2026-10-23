@@ -108,7 +108,7 @@ const tag = {
   health: { en: 'Healthcare', fa: 'سلامت' },
   logo: { en: 'Logo', fa: 'لوگو' },
   packaging: { en: 'Packaging', fa: 'بسته‌بندی' },
-  identity: { en: 'Identity', fa: 'هویت بصری' },
+  identity: { en: 'Brand Identity', fa: 'هویت برند' },
   motion: { en: 'Motion', fa: 'موشن' },
   instagram: { en: 'Instagram', fa: 'اینستاگرام' },
   campaign: { en: 'Campaign', fa: 'کمپین' },
@@ -244,7 +244,7 @@ const allProjects: Project[] = [
   {
     slug: 'coralia',
     category: 'brand',
-    title: { en: 'Coralia', fa: 'کورالیا' },
+    title: { en: 'Coralia Beach Hotel', fa: 'کورالیا هتل ساحلی' },
     client: { en: 'CORALIA', fa: 'CORALIA' },
     year: 2026,
     description: {
