@@ -31,13 +31,21 @@ export type BrandIdentity = {
   logosLayout?: 'stack' | 'row'
   /** Real logo image paths inside public/ (e.g. 'Image/L3.jpg'). When present, used instead of placeholder tiles; overrides `logos` count. */
   logoImages?: string[]
+  /** Pixel size of logoImages, for correct aspect ratio (no stretching/over-cropping). */
+  logoImageSize?: { w: number; h: number }
   fonts?: number
   /** 'row': fonts shown two side by side as rectangles. Default ('stack'): one per row. */
   fontsLayout?: 'stack' | 'row'
   /** Real font image paths inside public/ (e.g. 'Image/F3.jpg'). When present, used instead of placeholder tiles; overrides `fonts` count. */
   fontImages?: string[]
+  /** Pixel size of fontImages, for correct aspect ratio. */
+  fontImageSize?: { w: number; h: number }
   illustrations?: number
   stickers?: number
+  /** Real sticker image paths inside public/ (e.g. 'Image/ST1.jpg'). When present, used instead of placeholder tiles; overrides `stickers` count. */
+  stickerImages?: string[]
+  /** Pixel size of stickerImages, for correct aspect ratio. */
+  stickerImageSize?: { w: number; h: number }
 }
 
 /** Per-project copy for UI/UX case study sections. When present, overrides the generic placeholder text. */
@@ -214,8 +222,10 @@ const allProjects: Project[] = [
       logos: 3,
       logosLayout: 'row',
       logoImages: ['Image/L3.jpg', 'Image/L33.jpg', 'Image/L333.jpg'],
+      logoImageSize: { w: 936, h: 750 },
       fonts: 1,
       fontImages: ['Image/F3.jpg'],
+      fontImageSize: { w: 2985, h: 750 },
     },
     galleryLayout: 'pair10',
     resultImages: [
@@ -281,8 +291,37 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(5), logos: 4, logosLayout: 'row', fonts: 2, fontsLayout: 'row', stickers: 1 },
+    identity: {
+      palette: [
+        { name: { en: 'Coral Pink', fa: 'صورتی مرجانی' }, hex: '#FF6B5E' },
+        { name: { en: 'Golden Sand', fa: 'شنی طلایی' }, hex: '#EDD487' },
+        { name: { en: 'Ocean Aqua', fa: 'فیروزه‌ای اقیانوس' }, hex: '#A0CEE6' },
+        { name: { en: 'Deep Navy', fa: 'سرمه‌ای تیره' }, hex: '#0B4F6C' },
+        { name: { en: 'Warm Sand', fa: 'شنی گرم' }, hex: '#D8C2A3' },
+        { name: { en: 'Color 6', fa: 'رنگ ۶' } },
+      ],
+      logos: 4,
+      logosLayout: 'row',
+      logoImages: ['Image/L2.jpg', 'Image/L22.jpg', 'Image/L222.jpg', 'Image/L2222.jpg'],
+      logoImageSize: { w: 732, h: 729 },
+      fonts: 1,
+      fontImages: ['Image/FO.jpg'],
+      fontImageSize: { w: 1449, h: 750 },
+      stickers: 1,
+      stickerImages: ['Image/ST1.jpg'],
+      stickerImageSize: { w: 1449, h: 750 },
+    },
     galleryLayout: 'vertical8',
+    resultImages: [
+      'Image/28.jpg',
+      'Image/27.jpg',
+      'Image/26.jpg',
+      'Image/25.jpg',
+      'Image/24.jpg',
+      'Image/23.jpg',
+      'Image/22.jpg',
+      'Image/21.jpg',
+    ],
     visualIdentitySplit: true,
     copy: {
       intro: {

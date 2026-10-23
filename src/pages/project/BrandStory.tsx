@@ -90,12 +90,19 @@ function IdentityAssets({ project }: { project: Project }) {
               count={identity.logos}
               images={identity.logoImages}
               label={t('logo')}
-              w={identity.logoImages ? 936 : 400}
-              h={identity.logoImages ? 750 : 400}
+              w={identity.logoImageSize?.w ?? 400}
+              h={identity.logoImageSize?.h ?? 400}
               className={`grid grid-cols-2 gap-4 ${rowGridCols[identity.logos] ?? 'sm:grid-cols-3'}`}
             />
           ) : (
-            <Tiles count={identity.logos} images={identity.logoImages} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
+            <Tiles
+              count={identity.logos}
+              images={identity.logoImages}
+              label={t('logo')}
+              w={identity.logoImageSize?.w ?? 1264}
+              h={identity.logoImageSize?.h ?? 420}
+              className="grid grid-cols-1 gap-4"
+            />
           )}
         </div>
       )}
@@ -104,14 +111,21 @@ function IdentityAssets({ project }: { project: Project }) {
         <div className="space-y-4">
           <GroupLabel>{t('fonts')}</GroupLabel>
           {identity.fontsLayout === 'row' ? (
-            <Tiles count={identity.fonts} images={identity.fontImages} label={t('fonts')} w={620} h={440} className="grid grid-cols-1 gap-4 sm:grid-cols-2" />
+            <Tiles
+              count={identity.fonts}
+              images={identity.fontImages}
+              label={t('fonts')}
+              w={identity.fontImageSize?.w ?? 620}
+              h={identity.fontImageSize?.h ?? 440}
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+            />
           ) : (
             <Tiles
               count={identity.fonts}
               images={identity.fontImages}
               label={t('fonts')}
-              w={identity.fontImages ? 2985 : 1264}
-              h={identity.fontImages ? 750 : 520}
+              w={identity.fontImageSize?.w ?? 1264}
+              h={identity.fontImageSize?.h ?? 520}
               className="grid grid-cols-1 gap-4"
             />
           )}
@@ -136,9 +150,10 @@ function IdentityAssets({ project }: { project: Project }) {
           <GroupLabel>{t('stickers')}</GroupLabel>
           <Tiles
             count={identity.stickers}
+            images={identity.stickerImages}
             label={t('sticker')}
-            w={identity.stickers === 1 ? 1264 : 400}
-            h={identity.stickers === 1 ? 560 : 400}
+            w={identity.stickerImageSize?.w ?? (identity.stickers === 1 ? 1264 : 400)}
+            h={identity.stickerImageSize?.h ?? (identity.stickers === 1 ? 560 : 400)}
             className={identity.stickers === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6'}
           />
         </div>
