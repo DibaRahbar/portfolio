@@ -308,8 +308,9 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(5), logos: 3, illustrations: 1 },
+    identity: { palette: swatches(5), logos: 3, logosLayout: 'row', illustrations: 1 },
     galleryLayout: 'v5h4',
+    visualIdentitySplit: true,
     copy: {
       intro: {
         en: 'KOOKI is a modern cookie bakery built around simplicity, character, and everyday enjoyment. The project focuses on turning a simple product into a playful and memorable brand through a strong visual identity. At the heart of the identity is a custom mascot, supported by bold typography, expressive illustrations, and a warm, natural color palette inspired by baked goods.',
