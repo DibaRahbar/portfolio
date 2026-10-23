@@ -198,7 +198,6 @@ const allProjects: Project[] = [
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
     identity: { palette: swatches(4), logos: 3, logosLayout: 'row', fonts: 2, fontsLayout: 'row' },
     galleryLayout: 'pair10',
-    mergeIdentityIntoPositioning: true,
     copy: {
       intro: {
         en: 'Mars is a modern creative and digital agency built around technology, strategy, and bold visual communication. The project focuses on turning a multidisciplinary service — combining programming, design, and marketing — into a powerful and memorable brand. At the heart of the identity is a custom geometric logo mark inspired by the planet Mars, supported by bold typography, dynamic modular patterns, and a high-contrast palette of deep black and vibrant orange.',
@@ -228,8 +227,8 @@ const allProjects: Project[] = [
         fa: 'مارس یک آژانس پیشرو و خدمات کامل است که بر نوآوری، وضوح و نتایج قابل اندازه‌گیری تمرکز دارد. به‌جای زیبایی‌شناسی شرکتی معمولی، برند از یک زبان بصری مطمئن، ساختاریافته و کمی آینده‌نگرانه استفاده می‌کند که بر اساس تضادهای تیز، ثبات هندسی و انرژی رمزآلود سیاره‌ی سرخ بنا شده است.',
       },
       visualIdentity: {
-        en: 'The identity centers on a custom geometric logo and a bold color-blocking system that define the brand\'s look and feel. Deep black and vibrant orange, inspired by the Mars landscape, reflect a professional yet dynamic personality — combining the logic of programming with the creativity of design and strategy. The supporting diagonal pattern and modular design system help the brand expand across business cards, packaging, signage, and merchandise while staying consistent across every service line.',
-        fa: 'هویت بر یک لوگوی هندسی سفارشی و یک سیستم مسدودسازی رنگ جسورانه تمرکز دارد که ظاهر و حس برند را تعریف می‌کنند. سیاه عمیق و نارنجی زنده، الهام‌گرفته از چشم‌انداز مارس، یک شخصیت حرفه‌ای اما پویا را منعکس می‌کنند — که منطق برنامه‌نویسی را با خلاقیت طراحی و استراتژی ترکیب می‌کند. الگوی مورب حمایتی و سیستم طراحی ماژولار به برند کمک می‌کنند تا در کارت‌های ویزیت، بسته‌بندی، تابلوها و کالا گسترش یابد.',
+        en: 'The identity centers on a custom geometric logo and a bold color blocking system that define the brand\'s look and feel.\n\nDeep black and vibrant orange, inspired by the Mars landscape, reflect a professional yet dynamic personality—combining the logic of programming with the creativity of design and strategy. The supporting diagonal pattern and modular design system help the brand expand across business cards, packaging, signage, merchandise (like t-shirts and mugs), and future applications while staying consistent across every service line.',
+        fa: 'هویت بر یک لوگوی هندسی سفارشی و یک سیستم بلوک‌بندی رنگ جسورانه تمرکز دارد که ظاهر و حس برند را تعریف می‌کنند.\n\nسیاه عمیق و نارنجی زنده، الهام‌گرفته از چشم‌انداز مارس، یک شخصیت حرفه‌ای اما پویا را منعکس می‌کنند — که منطق برنامه‌نویسی را با خلاقیت طراحی و استراتژی ترکیب می‌کند. الگوی مورب حمایتی و سیستم طراحی ماژولار به برند کمک می‌کنند تا در کارت‌های ویزیت، بسته‌بندی، تابلوها، کالا (مانند تی‌شرت و ماگ) و کاربردهای آینده گسترش یابد، در حالی که در تمام خطوط خدماتی سازگار باقی می‌ماند.',
       },
       result: {
         en: 'Mars becomes more than just an agency — it turns into a bold, cosmic-driven brand experience. A clear visual system, a strong logo, and a flexible collateral system make it easy to recognize, efficient to use, and ready to grow across technology, design, and marketing landscapes.',

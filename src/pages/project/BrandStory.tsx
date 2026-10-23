@@ -177,10 +177,12 @@ export function BrandStory({ project }: { project: Project }) {
           <NumberedSection index={4} title={t('visualIdentity')} wide>
             {cp?.visualIdentity && (
               <Reveal>
-                <p className="mb-8 max-w-[72ch] text-base leading-7 text-muted-foreground">{l(cp.visualIdentity)}</p>
+                <StoryText>{l(cp.visualIdentity)}</StoryText>
               </Reveal>
             )}
-            <IdentityAssets project={project} />
+            <div className="mt-8 border-t pt-8">
+              <IdentityAssets project={project} />
+            </div>
           </NumberedSection>
         </>
       )}
