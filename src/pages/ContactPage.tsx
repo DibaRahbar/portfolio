@@ -36,14 +36,8 @@ export function ContactPage() {
                     <span className="grid size-12 shrink-0 place-items-center rounded-full border bg-background/80 text-brand backdrop-blur transition-colors group-hover:border-brand group-hover:bg-primary group-hover:text-primary-foreground sm:size-14">
                       <Icon className="size-5 sm:size-6" />
                     </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-mono text-[11px] tracking-[0.06em] text-brand-soft uppercase">
-                        {link.id === 'email' ? t('email') : link.label}
-                      </span>
-                      {/* Addresses and handles are always left-to-right, even inside Persian pages */}
-                      <span dir="ltr" className="mt-1 block truncate text-xl font-semibold tracking-tight sm:text-3xl rtl:text-end">
-                        {link.value}
-                      </span>
+                    <span className="min-w-0 flex-1 text-xl font-semibold tracking-tight sm:text-2xl">
+                      {link.id === 'email' ? t('email') : link.label}
                     </span>
                     <ArrowUpRight className="size-6 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
                   </a>
