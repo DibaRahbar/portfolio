@@ -198,7 +198,7 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(4), logos: 3, fonts: 2 },
+    identity: { palette: swatches(4), logos: 3, logosLayout: 'row', fonts: 2, fontsLayout: 'row' },
     galleryLayout: 'pair10',
     visualIdentitySplit: true,
     copy: {
