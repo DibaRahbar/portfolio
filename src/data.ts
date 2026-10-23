@@ -200,7 +200,7 @@ const allProjects: Project[] = [
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
     identity: {
       palette: [
-        { name: { en: 'Vibrant Orange', fa: 'نارنجی زنده' }, hex: '#D8522D' },
+        { name: { en: 'Vibrant Orange', fa: 'نارنجی زنده' }, hex: '#D44E27' },
         { name: { en: 'Gold', fa: 'طلایی' }, hex: '#DAAC4F' },
         { name: { en: 'Black', fa: 'مشکی' }, hex: '#020202' },
         { name: { en: 'Off-White', fa: 'سفید مایل به خاکستری' }, hex: '#FAFAFA' },
