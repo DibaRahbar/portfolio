@@ -125,13 +125,10 @@ const tag = {
   portfolioDesign: { en: 'Portfolio Design', fa: 'طراحی پورتفولیو' },
 }
 
-const plain = (s: string): Localized => ({ en: s, fa: s })
 const persianDigit = (n: number) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[Number(d)])
 /** Empty palette slots (no hex yet), shown as gray swatches until the real colors are added. */
 const swatches = (count: number): Swatch[] =>
   Array.from({ length: count }, (_, i) => ({ name: { en: `Color ${i + 1}`, fa: `رنگ ${persianDigit(i + 1)}` } }))
-const times: Localized = { en: 'x', fa: 'x' }
-const none = plain('')
 
 export const websites: Website[] = [
   {
@@ -437,27 +434,6 @@ const allProjects: Project[] = [
     duration: { en: 'In process', fa: 'در حال انجام' },
     role: { en: 'Social media designer', fa: 'طراح شبکه‌های اجتماعی' },
     hideStory: true,
-  },
-  {
-    slug: 'fitlab-campaign',
-    category: 'social',
-    title: { en: 'FitLab launch campaign', fa: 'کمپین معرفی فیت‌لب' },
-    client: { en: 'FitLab', fa: 'فیت‌لب' },
-    year: 2025,
-    place: { en: 'Remote', fa: 'دورکاری' },
-    description: {
-      en: 'A six-week social campaign with reels covers, carousels, and ad creatives.',
-      fa: 'کمپین شش‌هفته‌ای شبکه‌های اجتماعی با کاور ریلز، کاروسل و طرح‌های تبلیغاتی.',
-    },
-    tags: [tag.reels, tag.ads],
-    deliverables: { en: 'Reels, carousels & ads', fa: 'ریلز، کاروسل و تبلیغات' },
-    duration: { en: '6 weeks', fa: '۶ هفته' },
-    role: { en: 'Social media designer', fa: 'طراح شبکه‌های اجتماعی' },
-    results: [
-      { value: 2.4, suffix: times, label: { en: 'higher ad click-through', fa: 'نرخ کلیک بالاتر تبلیغات' } },
-      { value: 36, suffix: none, label: { en: 'creatives designed', fa: 'طرح تبلیغاتی' } },
-      { value: 6, suffix: none, label: { en: 'campaign weeks', fa: 'هفته کمپین' } },
-    ],
   },
 ]
 
