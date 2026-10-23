@@ -70,17 +70,6 @@ function IdentityAssets({ project }: { project: Project }) {
         <Palette project={project} />
       </div>
 
-      {!!identity.fonts && (
-        <div className="space-y-4">
-          <GroupLabel>{t('fonts')}</GroupLabel>
-          {identity.fontsLayout === 'row' ? (
-            <Tiles count={identity.fonts} label={t('fonts')} w={620} h={440} className="grid grid-cols-1 gap-4 sm:grid-cols-2" />
-          ) : (
-            <Tiles count={identity.fonts} label={t('fonts')} w={1264} h={520} className="grid grid-cols-1 gap-4" />
-          )}
-        </div>
-      )}
-
       {!!identity.logos && (
         <div className="space-y-4">
           <GroupLabel>{t('logos')}</GroupLabel>
@@ -88,6 +77,17 @@ function IdentityAssets({ project }: { project: Project }) {
             <Tiles count={identity.logos} label={t('logo')} w={400} h={400} className="grid grid-cols-2 gap-4 sm:grid-cols-3" />
           ) : (
             <Tiles count={identity.logos} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
+          )}
+        </div>
+      )}
+
+      {!!identity.fonts && (
+        <div className="space-y-4">
+          <GroupLabel>{t('fonts')}</GroupLabel>
+          {identity.fontsLayout === 'row' ? (
+            <Tiles count={identity.fonts} label={t('fonts')} w={620} h={440} className="grid grid-cols-1 gap-4 sm:grid-cols-2" />
+          ) : (
+            <Tiles count={identity.fonts} label={t('fonts')} w={1264} h={520} className="grid grid-cols-1 gap-4" />
           )}
         </div>
       )}
@@ -180,7 +180,7 @@ export function BrandStory({ project }: { project: Project }) {
                 <StoryText>{l(cp.visualIdentity)}</StoryText>
               </Reveal>
             )}
-            <div className="mt-8 border-t pt-8">
+            <div className="mt-8">
               <IdentityAssets project={project} />
             </div>
           </NumberedSection>
