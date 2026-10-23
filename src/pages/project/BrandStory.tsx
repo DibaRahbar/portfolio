@@ -73,7 +73,11 @@ function IdentityAssets({ project }: { project: Project }) {
       {!!identity.logos && (
         <div className="space-y-4">
           <GroupLabel>{t('logos')}</GroupLabel>
-          <Tiles count={identity.logos} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
+          {identity.logosLayout === 'row' ? (
+            <Tiles count={identity.logos} label={t('logo')} w={400} h={400} className="grid grid-cols-2 gap-4 sm:grid-cols-3" />
+          ) : (
+            <Tiles count={identity.logos} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
+          )}
         </div>
       )}
 
@@ -118,6 +122,7 @@ export function BrandStory({ project }: { project: Project }) {
   const { t, l } = useLang()
   const cp = project.copy
   const shots = project.galleryLayout ? layouts[project.galleryLayout] : galleries.brand
+  const mergeIdentity = project.mergeIdentityIntoPositioning
   return (
     <section className="mt-16 space-y-12 sm:mt-24 sm:space-y-16">
       {cp?.intro && (
@@ -148,18 +153,34 @@ export function BrandStory({ project }: { project: Project }) {
       <NumberedSection index={2} title={t('approach')}>
         <StoryText>{cp?.approach ? l(cp.approach) : t('approachCopy')}</StoryText>
       </NumberedSection>
-      <NumberedSection index={3} title={t('positioning')}>
-        <StoryText>{cp?.positioning ? l(cp.positioning) : t('positioningCopy')}</StoryText>
-      </NumberedSection>
-      <NumberedSection index={4} title={t('visualIdentity')} wide>
-        {cp?.visualIdentity && (
-          <Reveal>
-            <p className="mb-8 max-w-[72ch] text-base leading-7 text-muted-foreground">{l(cp.visualIdentity)}</p>
-          </Reveal>
-        )}
-        <IdentityAssets project={project} />
-      </NumberedSection>
-      <NumberedSection index={5} title={t('result')} wide>
+      {mergeIdentity ? (
+        <NumberedSection index={3} title={t('positioning')} wide>
+          <StoryText>{cp?.positioning ? l(cp.positioning) : t('positioningCopy')}</StoryText>
+          {cp?.visualIdentity && (
+            <Reveal>
+              <p className="mt-8 max-w-[72ch] text-base leading-7 text-muted-foreground">{l(cp.visualIdentity)}</p>
+            </Reveal>
+          )}
+          <div className="mt-8">
+            <IdentityAssets project={project} />
+          </div>
+        </NumberedSection>
+      ) : (
+        <>
+          <NumberedSection index={3} title={t('positioning')}>
+            <StoryText>{cp?.positioning ? l(cp.positioning) : t('positioningCopy')}</StoryText>
+          </NumberedSection>
+          <NumberedSection index={4} title={t('visualIdentity')} wide>
+            {cp?.visualIdentity && (
+              <Reveal>
+                <p className="mb-8 max-w-[72ch] text-base leading-7 text-muted-foreground">{l(cp.visualIdentity)}</p>
+              </Reveal>
+            )}
+            <IdentityAssets project={project} />
+          </NumberedSection>
+        </>
+      )}
+      <NumberedSection index={mergeIdentity ? 4 : 5} title={t('result')} wide>
         <StoryText>{cp?.result ? l(cp.result) : t('resultCopy')}</StoryText>
         <div className="mt-8">
           <GalleryGrid project={project} shots={shots} />

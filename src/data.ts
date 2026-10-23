@@ -27,6 +27,8 @@ export type Swatch = { name: Localized; hex?: string }
 export type BrandIdentity = {
   palette: Swatch[]
   logos?: number
+  /** 'row': logos shown side by side as squares. Default ('stack'): one per row. */
+  logosLayout?: 'stack' | 'row'
   fonts?: number
   illustrations?: number
   stickers?: number
@@ -77,13 +79,16 @@ export type Project = {
   identity?: BrandIdentity
   /** Brand projects: real case-study copy. When present, replaces generic placeholders. */
   copy?: BrandCopy
+  /** Brand projects: when true, Visual identity (text + assets) renders inside the Positioning section instead of its own. */
+  mergeIdentityIntoPositioning?: boolean
   /** UI/UX projects: real case-study copy. When present, replaces generic placeholders. */
   uiuxCopy?: UiuxCopy
   /**
    * Result gallery layout. 'mixed11': 3 wide + 8 regular. 'v5h4': 5 vertical + 4 horizontal.
-   * 'horizontal11': 11 horizontal. Brand projects without one use a default mix.
+   * 'horizontal11': 11 horizontal. 'pair10': 8 horizontal + a final pair side by side.
+   * Brand projects without one use a default mix.
    */
-  galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11'
+  galleryLayout?: 'mixed11' | 'v5h4' | 'horizontal11' | 'pair10'
   /** UI/UX projects: live website. Leave out until known; the page shows "coming soon". */
   url?: string
   /** UI/UX projects: showcase video file in public/videos (e.g. 'videos/academic-hu.mp4') or a full https URL to a video file. */
@@ -193,8 +198,9 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(4), logos: 3 },
-    galleryLayout: 'horizontal11',
+    identity: { palette: swatches(4), logos: 3, logosLayout: 'row' },
+    galleryLayout: 'pair10',
+    mergeIdentityIntoPositioning: true,
     copy: {
       intro: {
         en: 'Mars is a modern creative and digital agency built around technology, strategy, and bold visual communication. The project focuses on turning a multidisciplinary service — combining programming, design, and marketing — into a powerful and memorable brand. At the heart of the identity is a custom geometric logo mark inspired by the planet Mars, supported by bold typography, dynamic modular patterns, and a high-contrast palette of deep black and vibrant orange.',
