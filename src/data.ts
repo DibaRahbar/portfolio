@@ -41,6 +41,10 @@ export type BrandIdentity = {
   /** Pixel size of fontImages, for correct aspect ratio. */
   fontImageSize?: { w: number; h: number }
   illustrations?: number
+  /** Real illustration image paths inside public/ (e.g. 'Image/FO.jpg'). When present, used instead of placeholder tiles; overrides `illustrations` count. */
+  illustrationImages?: string[]
+  /** Pixel size of illustrationImages, for correct aspect ratio. */
+  illustrationImageSize?: { w: number; h: number }
   stickers?: number
   /** Real sticker image paths inside public/ (e.g. 'Image/ST1.jpg'). When present, used instead of placeholder tiles; overrides `stickers` count. */
   stickerImages?: string[]
@@ -142,11 +146,6 @@ const tag = {
   dashboardDesign: { en: 'Dashboard Design', fa: 'طراحی داشبورد' },
   portfolioDesign: { en: 'Portfolio Design', fa: 'طراحی پورتفولیو' },
 }
-
-const persianDigit = (n: number) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[Number(d)])
-/** Empty palette slots (no hex yet), shown as gray swatches until the real colors are added. */
-const swatches = (count: number): Swatch[] =>
-  Array.from({ length: count }, (_, i) => ({ name: { en: `Color ${i + 1}`, fa: `رنگ ${persianDigit(i + 1)}` } }))
 
 export const websites: Website[] = [
   {
@@ -378,8 +377,37 @@ const allProjects: Project[] = [
     tags: [tag.identity],
     role: { en: 'Brand Identity Designer', fa: 'طراح هویت برند' },
     appTool: { en: 'Adobe Illustrator · Adobe Photoshop', fa: 'ادوبی ایلاستریتور · ادوبی فتوشاپ' },
-    identity: { palette: swatches(5), logos: 3, logosLayout: 'row', illustrations: 1 },
+    identity: {
+      palette: [
+        { name: { en: 'Dark Espresso', fa: 'قهوه‌ای تیره' }, hex: '#452911' },
+        { name: { en: 'Cinnamon Brown', fa: 'قهوه‌ای دارچینی' }, hex: '#8B5E2F' },
+        { name: { en: 'Butter Yellow', fa: 'زرد کره‌ای' }, hex: '#F6DF90' },
+        { name: { en: 'Warm Tan', fa: 'نسکافه‌ای گرم' }, hex: '#F3CE9F' },
+        { name: { en: 'Cream White', fa: 'سفید کرمی' }, hex: '#FAF5EA' },
+      ],
+      logos: 3,
+      logosLayout: 'row',
+      logoImages: ['Image/L1.jpg', 'Image/L11.jpg', 'Image/L111.jpg'],
+      logoImageSize: { w: 936, h: 750 },
+      illustrations: 1,
+      illustrationImages: ['Image/FO.jpg'],
+      illustrationImageSize: { w: 1449, h: 750 },
+      stickers: 1,
+      stickerImages: ['Image/ST1.jpg'],
+      stickerImageSize: { w: 1449, h: 750 },
+    },
     galleryLayout: 'v5h4',
+    resultImages: [
+      'Image/122.jpg',
+      'Image/111.png',
+      'Image/1222.jpg',
+      'Image/12222.jpg',
+      'Image/1.jpg',
+      'Image/122222.png',
+      'Image/11.jpg',
+      'Image/1111.png',
+      'Image/122.png',
+    ],
     visualIdentitySplit: true,
     copy: {
       intro: {

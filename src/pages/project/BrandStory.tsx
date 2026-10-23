@@ -162,9 +162,10 @@ function IdentityAssets({ project }: { project: Project }) {
               <GroupLabel>{t('illustrations')}</GroupLabel>
               <Tiles
                 count={identity.illustrations}
+                images={identity.illustrationImages}
                 label={t('illustration')}
-                w={identity.illustrations === 1 ? 1264 : 620}
-                h={identity.illustrations === 1 ? 560 : 620}
+                w={identity.illustrationImageSize?.w ?? (identity.illustrations === 1 ? 1264 : 620)}
+                h={identity.illustrationImageSize?.h ?? (identity.illustrations === 1 ? 560 : 620)}
                 className={identity.illustrations === 1 ? 'grid grid-cols-1' : 'grid grid-cols-2 gap-4 md:grid-cols-4'}
               />
             </div>
