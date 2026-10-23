@@ -70,8 +70,8 @@ export type Project = {
   role: Localized
   /** Tool used for the project, shown right under Role (e.g. "Figma"). */
   appTool?: Localized
-  /** UI/UX projects: when true, the case study shows only the Overview section. */
-  storyOverviewOnly?: boolean
+  /** UI/UX projects: when true, the case-study section (Overview, etc.) is not shown at all. */
+  hideStory?: boolean
   results?: Result[]
   /** Brand projects: palette, logos, fonts, illustrations, stickers. */
   identity?: BrandIdentity
@@ -347,7 +347,8 @@ const allProjects: Project[] = [
     },
     tags: [tag.uiDesign, tag.uxDesign, tag.dashboardDesign],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
-    storyOverviewOnly: true,
+    appTool: { en: 'Figma', fa: 'فیگما' },
+    hideStory: true,
   },
   {
     slug: 'photography-portfolio',
