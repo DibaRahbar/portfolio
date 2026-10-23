@@ -351,8 +351,8 @@ const allProjects: Project[] = [
     title: { en: 'Academic Hu', fa: 'Academic Hu' },
     client: { en: 'Academic Hu', fa: 'Academic Hu' },
     description: {
-      en: 'Design and implementation of a comprehensive, user-friendly website for a university professor to serve as a bridge between the professor, students, and the scientific community. This project was carried out with the goal of integrating three core functions into a single platform: delivering course materials, sharing research publications, and facilitating communication with students.',
-      fa: 'طراحی و پیاده‌سازی یک وب‌سایت جامع و کاربرپسند برای یک استاد دانشگاه به‌عنوان پلی بین استاد، دانشجویان و جامعه‌ی علمی. این پروژه با هدف یکپارچه‌سازی سه عملکرد اصلی در یک پلتفرم انجام شد: ارائه‌ی مطالب درسی، اشتراک‌گذاری انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
+      en: 'Designed and developed a user-friendly university professor website to share course materials, research publications, and facilitate student communication.',
+      fa: 'طراحی و توسعه‌ی یک وب‌سایت کاربرپسند برای یک استاد دانشگاه جهت اشتراک‌گذاری مطالب درسی، انتشارات پژوهشی و تسهیل ارتباط با دانشجویان.',
     },
     tags: [tag.uiDesign, tag.uxDesign, tag.dashboardDesign],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
@@ -379,8 +379,8 @@ const allProjects: Project[] = [
     category: 'uiux',
     title: { en: 'Tabriz Art Gallery', fa: 'گالری هنری تبریز' },
     description: {
-      en: 'This project brings together three of Tabriz\'s premier art galleries into one cohesive online platform. Visitors can browse current downloadable catalogs from each gallery. The site also provides clear "Contact Us" information (via email, map, and working hours) and dedicated gallery and artist profile pages featuring all available works. The goal was to recreate the experience of visiting a physical gallery online — offering a rich, intuitive, and visually engaging gateway into the city\'s art world.',
-      fa: 'این پروژه سه گالری برتر تبریز را در یک پلتفرم آنلاین منسجم گرد هم می‌آورد. بازدیدکنندگان می‌توانند کاتالوگ‌های قابل دانلود هر گالری را مرور کنند. سایت اطلاعات تماس واضح (ایمیل، نقشه و ساعات کار) و صفحات اختصاصی پروفایل گالری و هنرمند با تمام آثار موجود ارائه می‌دهد. هدف، بازآفرینی تجربه‌ی بازدید از یک گالری فیزیکی به صورت آنلاین بود — دسترسی به دنیای هنر شهر از طریق یک درگاه غنی، شهودی و بصری.',
+      en: 'Designed and developed a visually engaging platform connecting three art galleries in Tabriz, featuring artwork collections, artist profiles, downloadable catalogs, and gallery information.',
+      fa: 'طراحی و توسعه‌ی یک پلتفرم بصری جذاب که سه گالری هنری تبریز را به هم متصل می‌کند، با مجموعه آثار هنری، پروفایل هنرمندان، کاتالوگ‌های قابل دانلود و اطلاعات گالری.',
     },
     tags: [tag.platform, tag.art, tag.virtual, tag.ecommerce],
     role: { en: 'UI/UX designer', fa: 'طراح UI/UX' },
