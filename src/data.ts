@@ -29,9 +29,13 @@ export type BrandIdentity = {
   logos?: number
   /** 'row': logos shown side by side as squares. Default ('stack'): one per row. */
   logosLayout?: 'stack' | 'row'
+  /** Real logo image paths inside public/ (e.g. 'Image/L3.jpg'). When present, used instead of placeholder tiles; overrides `logos` count. */
+  logoImages?: string[]
   fonts?: number
   /** 'row': fonts shown two side by side as rectangles. Default ('stack'): one per row. */
   fontsLayout?: 'stack' | 'row'
+  /** Real font image paths inside public/ (e.g. 'Image/F3.jpg'). When present, used instead of placeholder tiles; overrides `fonts` count. */
+  fontImages?: string[]
   illustrations?: number
   stickers?: number
 }
@@ -207,8 +211,9 @@ const allProjects: Project[] = [
       ],
       logos: 3,
       logosLayout: 'row',
-      fonts: 2,
-      fontsLayout: 'row',
+      logoImages: ['Image/L3.jpg', 'Image/L33.jpg', 'Image/L333.jpg'],
+      fonts: 1,
+      fontImages: ['Image/F3.jpg'],
     },
     galleryLayout: 'pair10',
     visualIdentitySplit: true,

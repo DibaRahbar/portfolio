@@ -7,6 +7,9 @@ import { useThemeMode } from '@/theme-mode'
 
 export const mono = 'font-mono text-[11px] tracking-[0.06em] uppercase'
 
+/** Resolves an asset path inside public/ (works under the GitHub Pages sub-path) or passes a full URL through. */
+export const assetSrc = (path: string) => (/^https?:\/\//.test(path) ? path : `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`)
+
 /** Small caption above a group of assets, e.g. "Color palette". */
 export function GroupLabel({ children }: { children: ReactNode }) {
   return <h3 className={`${mono} text-brand-soft`}>{children}</h3>

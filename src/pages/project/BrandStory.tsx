@@ -3,17 +3,19 @@ import { useLang } from '@/i18n'
 import { placeholderImage } from '@/lib/placeholder'
 import { useThemeMode } from '@/theme-mode'
 import { Reveal } from '@/components/site/Reveal'
-import { GalleryGrid, GroupLabel, NumberedSection, StoryText, galleries, layouts, mono } from '@/pages/project/shared'
+import { GalleryGrid, GroupLabel, NumberedSection, StoryText, assetSrc, galleries, layouts, mono } from '@/pages/project/shared'
 
-/** Gray tiles standing in for artwork until real images are added. */
+/** Gray tiles standing in for artwork until real images are added, or real images when `images` is given. */
 function Tiles({
   count,
+  images,
   label,
   w,
   h,
   className,
 }: {
   count: number
+  images?: string[]
   label: string
   w: number
   h: number
@@ -21,12 +23,13 @@ function Tiles({
 }) {
   const { isDark } = useThemeMode()
   const { n } = useLang()
+  const total = images?.length ?? count
   return (
     <div className={className}>
-      {Array.from({ length: count }, (_, i) => (
+      {Array.from({ length: total }, (_, i) => (
         <Reveal key={i}>
           <img
-            src={placeholderImage(`${label} ${n(i + 1)}`, w, h, isDark)}
+            src={images ? assetSrc(images[i]) : placeholderImage(`${label} ${n(i + 1)}`, w, h, isDark)}
             alt={`${label} ${n(i + 1)}`}
             style={{ aspectRatio: `${w} / ${h}` }}
             className="w-full rounded-2xl object-cover"
@@ -85,13 +88,14 @@ function IdentityAssets({ project }: { project: Project }) {
           {identity.logosLayout === 'row' ? (
             <Tiles
               count={identity.logos}
+              images={identity.logoImages}
               label={t('logo')}
-              w={400}
-              h={400}
+              w={identity.logoImages ? 936 : 400}
+              h={identity.logoImages ? 750 : 400}
               className={`grid grid-cols-2 gap-4 ${rowGridCols[identity.logos] ?? 'sm:grid-cols-3'}`}
             />
           ) : (
-            <Tiles count={identity.logos} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
+            <Tiles count={identity.logos} images={identity.logoImages} label={t('logo')} w={1264} h={420} className="grid grid-cols-1 gap-4" />
           )}
         </div>
       )}
@@ -100,9 +104,16 @@ function IdentityAssets({ project }: { project: Project }) {
         <div className="space-y-4">
           <GroupLabel>{t('fonts')}</GroupLabel>
           {identity.fontsLayout === 'row' ? (
-            <Tiles count={identity.fonts} label={t('fonts')} w={620} h={440} className="grid grid-cols-1 gap-4 sm:grid-cols-2" />
+            <Tiles count={identity.fonts} images={identity.fontImages} label={t('fonts')} w={620} h={440} className="grid grid-cols-1 gap-4 sm:grid-cols-2" />
           ) : (
-            <Tiles count={identity.fonts} label={t('fonts')} w={1264} h={520} className="grid grid-cols-1 gap-4" />
+            <Tiles
+              count={identity.fonts}
+              images={identity.fontImages}
+              label={t('fonts')}
+              w={identity.fontImages ? 2985 : 1264}
+              h={identity.fontImages ? 750 : 520}
+              className="grid grid-cols-1 gap-4"
+            />
           )}
         </div>
       )}
